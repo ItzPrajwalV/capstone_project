@@ -1,0 +1,71 @@
+Segment_Idx,Class,Source_Video,Start_Frame,End_Frame,Num_Frames,Duration_s,Predicted_Action,Confidence,Action_Correct,Detection_Agreement_F1,Mean_IoU
+1,Clapping,Clapping (1).mp4,0,306,307,10.233,clapping,0.734,1,0.652,0.626
+2,Clapping,Clapping (2).mp4,307,597,291,9.7,clapping,0.905,1,0.859,0.892
+3,Clapping,Clapping (3).mp4,598,913,316,10.533,clapping,0.919,1,0.0,0.0
+4,Clapping,Clapping (4).mp4,914,1219,306,10.2,clapping,0.919,1,0.0,0.0
+5,Clapping,Clapping (5).mp4,1220,1528,309,10.3,clapping,0.869,1,0.191,0.648
+6,Clapping,Clapping (6).mp4,1529,1854,326,10.867,clapping,0.928,1,0.0,0.0
+7,Clapping,Clapping (7).mp4,1855,2163,309,10.3,clapping,0.935,1,0.191,0.678
+8,Clapping,Clapping (8).mp4,2164,2458,295,9.833,clapping,0.854,1,0.847,0.698
+9,Clapping,Clapping (9).mp4,2459,2753,295,9.833,walking while using phone,0.397,0,0.153,0.85
+10,Clapping,Clapping (10).mp4,2754,3057,304,10.133,clapping,0.942,1,1.0,0.752
+11,Meet and Split,Meet and Split (1).mp4,3058,3348,291,9.7,walking while using phone,0.605,0,0.0,0.0
+12,Meet and Split,Meet and Split (2).mp4,3349,3619,271,9.033,walking while using phone,0.63,0,0.0,0.0
+13,Meet and Split,Meet and Split (3).mp4,3620,3855,236,7.867,walking while using phone,0.651,0,0.0,0.0
+14,Meet and Split,Meet and Split (4).mp4,3856,4088,233,7.767,walking while using phone,0.736,0,0.0,0.0
+15,Meet and Split,Meet and Split (5).mp4,4089,4398,310,10.333,walking while using phone,0.665,0,0.0,0.0
+16,Meet and Split,Meet and Split (6).mp4,4399,4674,276,9.2,walking,0.455,0,0.0,0.0
+17,Meet and Split,Meet and Split (7).mp4,4675,4901,227,7.567,walking while using phone,0.539,0,0.0,0.0
+18,Meet and Split,Meet and Split (8).mp4,4902,5148,247,8.233,walking while using phone,0.648,0,0.0,0.0
+19,Meet and Split,Meet and Split (9).mp4,5149,5432,284,9.467,walking while using phone,0.637,0,0.0,0.0
+20,Meet and Split,Meet and Split (10).mp4,5433,5681,249,8.3,walking while using phone,0.44,0,0.0,0.0
+21,Sitting,Sitting (1).mp4,5682,6009,328,10.933,walking while using phone,0.565,0,0.0,0.0
+22,Sitting,Sitting (2).mp4,6010,6282,273,9.1,walking while using phone,0.379,0,0.0,0.0
+23,Sitting,Sitting (3).mp4,6283,6598,316,10.533,walking while using phone,0.351,0,0.209,0.592
+24,Sitting,Sitting (4).mp4,6599,6881,283,9.433,sitting,0.331,1,1.0,0.575
+25,Sitting,Sitting (5).mp4,6882,7172,291,9.7,walking,0.273,0,1.0,0.522
+26,Sitting,Sitting (6).mp4,7173,7444,272,9.067,walking,0.285,0,0.0,0.0
+27,Sitting,Sitting (7).mp4,7445,7749,305,10.167,meet and split,0.398,0,0.0,0.0
+28,Sitting,Sitting (8).mp4,7750,8035,286,9.533,walking,0.434,0,0.0,0.0
+29,Sitting,Sitting (9).mp4,8036,8337,302,10.067,walking,0.575,0,0.0,0.0
+30,Sitting,Sitting (10).mp4,8338,8661,324,10.8,meet and split,0.398,0,0.0,0.0
+31,Standing Still,Standing Still (1).mp4,8662,8979,318,10.6,walking while using phone,0.764,0,0.0,0.0
+32,Standing Still,Standing Still (2).mp4,8980,9287,308,10.267,walking while using phone,0.544,0,0.172,0.583
+33,Standing Still,Standing Still (3).mp4,9288,9595,308,10.267,standing still,0.6,1,0.5,0.562
+34,Standing Still,Standing Still (4).mp4,9596,9903,308,10.267,standing still,0.817,1,0.552,0.585
+35,Standing Still,Standing Still (5).mp4,9904,10211,308,10.267,standing still,0.795,1,0.541,0.639
+36,Standing Still,Standing Still (6).mp4,10212,10519,308,10.267,standing still,0.79,1,0.134,0.618
+37,Standing Still,Standing Still (7).mp4,10520,10826,307,10.233,standing still,0.576,1,1.0,0.719
+38,Standing Still,Standing Still (8).mp4,10827,11133,307,10.233,standing still,0.736,1,0.814,0.783
+39,Standing Still,Standing Still (9).mp4,11134,11440,307,10.233,walking,0.266,0,0.186,0.507
+40,Standing Still,Standing Still (10).mp4,11441,11747,307,10.233,standing still,0.294,1,0.613,0.584
+41,Walking,Walking (1).mp4,11748,12050,303,10.1,walking,0.696,1,0.0,0.0
+42,Walking,Walking (2).mp4,12051,12353,303,10.1,walking,0.685,1,0.0,0.0
+43,Walking,Walking (3).mp4,12354,12651,298,9.933,walking,0.761,1,0.0,0.0
+44,Walking,Walking (4).mp4,12652,12954,303,10.1,walking,0.589,1,0.0,0.0
+45,Walking,Walking (5).mp4,12955,13234,280,9.333,walking,0.729,1,0.0,0.0
+46,Walking,Walking (6).mp4,13235,13606,372,12.4,walking,0.644,1,0.0,0.0
+47,Walking,Walking (7).mp4,13607,13867,261,8.7,walking,0.845,1,0.145,0.511
+48,Walking,Walking (8).mp4,13868,14149,282,9.4,walking,0.698,1,0.0,0.0
+49,Walking,Walking (9).mp4,14150,14423,274,9.133,walking,0.762,1,0.332,0.518
+50,Walking,Walking (10).mp4,14424,14715,292,9.733,walking,0.67,1,0.856,0.706
+51,Walking While Reading Book,Walking While Reading Book (1).mp4,14716,15009,294,9.8,walking,0.377,0,0.0,0.0
+52,Walking While Reading Book,Walking While Reading Book (2).mp4,15010,15277,268,8.933,walking,0.528,0,0.0,0.0
+53,Walking While Reading Book,Walking While Reading Book (3).mp4,15278,15589,312,10.4,walking,0.44,0,0.0,0.0
+54,Walking While Reading Book,Walking While Reading Book (4).mp4,15590,15863,274,9.133,walking,0.55,0,0.0,0.0
+55,Walking While Reading Book,Walking While Reading Book (5).mp4,15864,16146,283,9.433,walking while using phone,0.296,0,0.0,0.0
+56,Walking While Reading Book,Walking While Reading Book (6).mp4,16147,16453,307,10.233,walking while using phone,0.642,0,0.0,0.0
+57,Walking While Reading Book,Walking While Reading Book (7).mp4,16454,16844,391,13.033,walking while using phone,0.864,0,0.0,0.0
+58,Walking While Reading Book,Walking While Reading Book (8).mp4,16845,17130,286,9.533,walking while using phone,0.823,0,0.0,0.0
+59,Walking While Reading Book,Walking While Reading Book (9).mp4,17131,17389,259,8.633,walking while using phone,0.756,0,0.0,0.0
+60,Walking While Reading Book,Walking While Reading Book (10).mp4,17390,17762,373,12.433,walking while using phone,0.85,0,0.0,0.0
+61,Walking While Using Phone,Walking While Using Phone (1).mp4,17763,18078,316,10.533,walking while using phone,0.73,1,0.209,0.701
+62,Walking While Using Phone,Walking While Using Phone (2).mp4,18079,18394,316,10.533,walking while using phone,0.885,1,0.0,0.0
+63,Walking While Using Phone,Walking While Using Phone (3).mp4,18395,18710,316,10.533,walking while using phone,0.854,1,0.275,0.502
+64,Walking While Using Phone,Walking While Using Phone (4).mp4,18711,19026,316,10.533,walking while using phone,0.892,1,1.0,0.761
+65,Walking While Using Phone,Walking While Using Phone (5).mp4,19027,19342,316,10.533,walking while using phone,0.897,1,0.712,0.502
+66,Walking While Using Phone,Walking While Using Phone (6).mp4,19343,19658,316,10.533,walking while using phone,0.65,1,0.0,0.0
+67,Walking While Using Phone,Walking While Using Phone (7).mp4,19659,19976,318,10.6,walking while using phone,0.929,1,0.786,0.544
+68,Walking While Using Phone,Walking While Using Phone (8).mp4,19977,20294,318,10.6,walking while using phone,0.936,1,0.786,0.587
+69,Walking While Using Phone,Walking While Using Phone (9).mp4,20295,20612,318,10.6,walking while using phone,0.931,1,0.214,0.585
+70,Walking While Using Phone,Walking While Using Phone (10).mp4,20613,20930,318,10.6,walking while using phone,0.901,1,0.009,0.51

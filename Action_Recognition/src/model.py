@@ -130,7 +130,7 @@ class TemporalCNN(nn.Module):
         x = self.pool5(x)                    # (batch, 512, 6, 6)
         
         # ===== FLATTEN & FULLY CONNECTED =====
-        x = x.view(x.size(0), -1)            # (batch, 18432)
+        x = x.reshape(x.size(0), -1)          # (batch, 18432)
         
         x = self.fc6(x)
         x = self.relu6(x)

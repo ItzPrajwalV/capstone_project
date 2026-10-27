@@ -1,0 +1,4241 @@
+{
+  "environment": {
+    "OS": "Windows 10",
+    "CPU": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "Logical Cores": 32,
+    "RAM_GB": 127.69,
+    "GPU": "NVIDIA RTX 4500 Ada Generation",
+    "VRAM_GB": 25.76,
+    "PyTorch": "2.6.0+cu124",
+    "TensorFlow": "2.21.0",
+    "Python": "3.11.0"
+  },
+  "complexity": [
+    {
+      "Model": "SSD300_H264 (Ours Detector)",
+      "Framework": "TensorFlow",
+      "Input Shape": "300x300x3 DCT Energy Map",
+      "Params (M)": 44.29,
+      "GFLOPs / Inference": 3.472,
+      "Weights Size (MB)": 506.91,
+      "Median Latency (ms)": 9.87,
+      "P95 Latency (ms)": 10.19,
+      "Device": "cpu"
+    },
+    {
+      "Model": "TemporalCNN (Ours Action)",
+      "Framework": "PyTorch",
+      "Input Shape": "20x224x224 Cropped MVs",
+      "Params (M)": 90.52,
+      "GFLOPs / Inference": 5.228,
+      "Weights Size (MB)": 1035.9,
+      "Median Latency (ms)": 0.0,
+      "P95 Latency (ms)": 0.0,
+      "Device": "cuda"
+    },
+    {
+      "Model": "YOLOv8n",
+      "Framework": "PyTorch / Ultralytics",
+      "Input Shape": "640x640x3 RGB Frame",
+      "Params (M)": 3.16,
+      "GFLOPs / Inference": 8.744,
+      "Weights Size (MB)": 6.25,
+      "Median Latency (ms)": 4.43,
+      "P95 Latency (ms)": 7.35,
+      "Device": "cuda"
+    }
+  ],
+  "total_evaluated": 35,
+  "videos": {
+    "Clapping (1)": {
+      "video_name": "Clapping (1)",
+      "class_name": "Clapping",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Clapping\\Clapping (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1560686999873724,
+          "2_single_pass_extraction_ffmpeg": 1.2106805999937933,
+          "3_dct_feature_map_build_numpy": 0.06320060000871308,
+          "4_mv_parse_numpy": 1.0275911000207998,
+          "5_ssd_detection_iframes": 0.08120980000239797,
+          "6_mv_box_propagation": 0.07129919997532852
+        },
+        "total_time_s": 3.610049999988405,
+        "pre_time_s": 3.4575410000106785,
+        "inf_time_s": 0.08120980000239797,
+        "post_time_s": 0.07129919997532852,
+        "fps": 85.04037340230359,
+        "ms_per_frame": 11.75912052113487,
+        "detector_calls": 2,
+        "total_frames": 307,
+        "detector_call_latency": {
+          "mean_ms": 40.601150001748465,
+          "median_ms": 40.601150001748465,
+          "p95_ms": 55.271285005437676,
+          "std_ms": 16.300150004099123,
+          "n": 2
+        },
+        "cpu_seconds": 4.53125,
+        "extra_peak_rss_mb": 717.109375,
+        "action_result": {
+          "predicted_class_id": 0,
+          "predicted_class_name": "clapping",
+          "confidence": 0.9307823777198792,
+          "all_probabilities": {
+            "clapping": 0.9307823777198792,
+            "meet and split": 0.014175426214933395,
+            "sitting": 0.011900260113179684,
+            "standing still": 0.009267458692193031,
+            "walking": 0.01065701525658369,
+            "walking while reading book": 0.00796063058078289,
+            "walking while using phone": 0.01525693666189909
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "clapping",
+              "probability": 0.9307823777198792
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.01525693666189909
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.014175426214933395
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.011900260113179684
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.01065701525658369
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 307
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.783832199987955
+        },
+        "total_time_s": 8.783832199987955,
+        "pre_time_s": 0.7278215997212101,
+        "inf_time_s": 3.4144390003348235,
+        "post_time_s": 1.4247140998777468,
+        "fps": 34.95057658323903,
+        "ms_per_frame": 28.611831270319072,
+        "detector_calls": 307,
+        "total_frames": 307,
+        "detector_call_latency": {
+          "mean_ms": 18.133468077960195,
+          "median_ms": 12.444400024833158,
+          "p95_ms": 40.60126999684144,
+          "std_ms": 12.097377105204194,
+          "n": 307
+        },
+        "cpu_seconds": 9.625,
+        "extra_peak_rss_mb": 387.12890625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "mean_iou": 0.864126980304718,
+          "tp": 307,
+          "fp": 0,
+          "fn": 0,
+          "gt_frames": 307
+        },
+        "yolo_full": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "mean_iou": 0.9937066759824458,
+          "tp": 307,
+          "fp": 0,
+          "fn": 0,
+          "gt_frames": 307
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Clapping.txt"
+      }
+    },
+    "Clapping (2)": {
+      "video_name": "Clapping (2)",
+      "class_name": "Clapping",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Clapping\\Clapping (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.2403957000060473,
+          "2_single_pass_extraction_ffmpeg": 1.2751447999908123,
+          "3_dct_feature_map_build_numpy": 0.061270900012459606,
+          "4_mv_parse_numpy": 1.1042715000221506,
+          "5_ssd_detection_iframes": 0.07220350002171472,
+          "6_mv_box_propagation": 0.06571490000351332
+        },
+        "total_time_s": 3.819001300056698,
+        "pre_time_s": 3.6810829000314698,
+        "inf_time_s": 0.07220350002171472,
+        "post_time_s": 0.06571490000351332,
+        "fps": 76.19793164136387,
+        "ms_per_frame": 13.123715807754975,
+        "detector_calls": 2,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 36.097799995332025,
+          "median_ms": 36.097799995332025,
+          "p95_ms": 40.0039799962542,
+          "std_ms": 4.340200001024641,
+          "n": 2
+        },
+        "cpu_seconds": 4.5,
+        "extra_peak_rss_mb": 671.85546875,
+        "action_result": {
+          "predicted_class_id": 0,
+          "predicted_class_name": "clapping",
+          "confidence": 0.9256939888000488,
+          "all_probabilities": {
+            "clapping": 0.9256939888000488,
+            "meet and split": 0.014737813733518124,
+            "sitting": 0.012511529959738255,
+            "standing still": 0.010108732618391514,
+            "walking": 0.01206082385033369,
+            "walking while reading book": 0.008687782101333141,
+            "walking while using phone": 0.01619919016957283
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "clapping",
+              "probability": 0.9256939888000488
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.01619919016957283
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.014737813733518124
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.012511529959738255
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.01206082385033369
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 291
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.613689199992223
+        },
+        "total_time_s": 8.613689199992223,
+        "pre_time_s": 0.7154247000871692,
+        "inf_time_s": 3.299933499918552,
+        "post_time_s": 1.5692536000860855,
+        "fps": 33.7834339321487,
+        "ms_per_frame": 29.600306529182895,
+        "detector_calls": 291,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 19.191105842239885,
+          "median_ms": 17.945999978110194,
+          "p95_ms": 39.78440001083072,
+          "std_ms": 12.192548790245723,
+          "n": 291
+        },
+        "cpu_seconds": 10.71875,
+        "extra_peak_rss_mb": 370.73046875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 1.0,
+          "recall": 0.9478827361563518,
+          "f1": 0.9732441471571907,
+          "mean_iou": 0.7211445569992065,
+          "tp": 291,
+          "fp": 0,
+          "fn": 16,
+          "gt_frames": 307
+        },
+        "yolo_full": {
+          "precision": 1.0,
+          "recall": 0.9478827361563518,
+          "f1": 0.9732441471571907,
+          "mean_iou": 0.8564310633214224,
+          "tp": 291,
+          "fp": 0,
+          "fn": 16,
+          "gt_frames": 307
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Clapping.txt"
+      }
+    },
+    "Meet and Split (1)": {
+      "video_name": "Meet and Split (1)",
+      "class_name": "Meet and Split",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Meet and Split\\Meet and Split (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.109112100006314,
+          "2_single_pass_extraction_ffmpeg": 1.1929309999977704,
+          "3_dct_feature_map_build_numpy": 0.06586430000606924,
+          "4_mv_parse_numpy": 0.9917641000065487,
+          "5_ssd_detection_iframes": 0.06505259999539703,
+          "6_mv_box_propagation": 0.0703553999774158
+        },
+        "total_time_s": 3.495079499989515,
+        "pre_time_s": 3.3596715000167023,
+        "inf_time_s": 0.06505259999539703,
+        "post_time_s": 0.0703553999774158,
+        "fps": 83.25990868043858,
+        "ms_per_frame": 12.010582474190773,
+        "detector_calls": 2,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 32.521949979127385,
+          "median_ms": 32.521949979127385,
+          "p95_ms": 40.00873497716384,
+          "std_ms": 8.318649997818284,
+          "n": 2
+        },
+        "cpu_seconds": 4.578125,
+        "extra_peak_rss_mb": 657.078125,
+        "action_result": {
+          "predicted_class_id": 1,
+          "predicted_class_name": "meet and split",
+          "confidence": 0.5887600183486938,
+          "all_probabilities": {
+            "clapping": 0.022963691502809525,
+            "meet and split": 0.5887600183486938,
+            "sitting": 0.02234909124672413,
+            "standing still": 0.023292185738682747,
+            "walking": 0.13686694204807281,
+            "walking while reading book": 0.01711628958582878,
+            "walking while using phone": 0.18865171074867249
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "meet and split",
+              "probability": 0.5887600183486938
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.18865171074867249
+            },
+            {
+              "rank": 3,
+              "class_name": "walking",
+              "probability": 0.13686694204807281
+            },
+            {
+              "rank": 4,
+              "class_name": "standing still",
+              "probability": 0.023292185738682747
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.022963691502809525
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 291
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.469267500011483
+        },
+        "total_time_s": 10.469267500011483,
+        "pre_time_s": 0.7703863998467568,
+        "inf_time_s": 3.947555800405098,
+        "post_time_s": 2.783592800027691,
+        "fps": 27.795640907989103,
+        "ms_per_frame": 35.976864261207844,
+        "detector_calls": 291,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 25.778470791338645,
+          "median_ms": 22.590899985516444,
+          "p95_ms": 59.375850003561936,
+          "std_ms": 18.42661619694984,
+          "n": 291
+        },
+        "cpu_seconds": 11.71875,
+        "extra_peak_rss_mb": 347.8203125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.4811320754716981,
+        "recall": 0.35294117647058826,
+        "f1": 0.40718562874251496,
+        "mean_iou": 0.5645778179168701,
+        "tp": 204,
+        "fp": 220,
+        "fn": 374,
+        "gt_frames": 291
+      }
+    },
+    "Meet and Split (2)": {
+      "video_name": "Meet and Split (2)",
+      "class_name": "Meet and Split",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Meet and Split\\Meet and Split (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.0762601000024006,
+          "2_single_pass_extraction_ffmpeg": 1.170916800008854,
+          "3_dct_feature_map_build_numpy": 0.06125290002091788,
+          "4_mv_parse_numpy": 0.9312319000018761,
+          "5_ssd_detection_iframes": 0.06221249999362044,
+          "6_mv_box_propagation": 0.0663809000106994
+        },
+        "total_time_s": 3.3682551000383683,
+        "pre_time_s": 3.2396617000340484,
+        "inf_time_s": 0.06221249999362044,
+        "post_time_s": 0.0663809000106994,
+        "fps": 80.45708889356777,
+        "ms_per_frame": 12.42898560899767,
+        "detector_calls": 2,
+        "total_frames": 271,
+        "detector_call_latency": {
+          "mean_ms": 31.10315000230912,
+          "median_ms": 31.10315000230912,
+          "p95_ms": 38.26872499048477,
+          "std_ms": 7.961749986861832,
+          "n": 2
+        },
+        "cpu_seconds": 3.6875,
+        "extra_peak_rss_mb": 636.06640625,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.4598017930984497,
+          "all_probabilities": {
+            "clapping": 0.030224863439798355,
+            "meet and split": 0.26452961564064026,
+            "sitting": 0.028986254706978798,
+            "standing still": 0.03200732544064522,
+            "walking": 0.15273986756801605,
+            "walking while reading book": 0.03171036019921303,
+            "walking while using phone": 0.4598017930984497
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.4598017930984497
+            },
+            {
+              "rank": 2,
+              "class_name": "meet and split",
+              "probability": 0.26452961564064026
+            },
+            {
+              "rank": 3,
+              "class_name": "walking",
+              "probability": 0.15273986756801605
+            },
+            {
+              "rank": 4,
+              "class_name": "standing still",
+              "probability": 0.03200732544064522
+            },
+            {
+              "rank": 5,
+              "class_name": "walking while reading book",
+              "probability": 0.03171036019921303
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 271
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.657283500011545
+        },
+        "total_time_s": 9.657283500011545,
+        "pre_time_s": 0.6893970002129208,
+        "inf_time_s": 3.541987699980382,
+        "post_time_s": 2.5273788999184035,
+        "fps": 28.06172149752837,
+        "ms_per_frame": 35.63573247236732,
+        "detector_calls": 271,
+        "total_frames": 271,
+        "detector_call_latency": {
+          "mean_ms": 24.94008708528305,
+          "median_ms": 26.17530000861734,
+          "p95_ms": 46.69694998301566,
+          "std_ms": 13.551484479265989,
+          "n": 271
+        },
+        "cpu_seconds": 11.765625,
+        "extra_peak_rss_mb": 345.3203125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.2029520295202952,
+        "recall": 0.2029520295202952,
+        "f1": 0.2029520295202952,
+        "mean_iou": 0.6822674870491028,
+        "tp": 110,
+        "fp": 432,
+        "fn": 432,
+        "gt_frames": 271
+      }
+    },
+    "Sitting (1)": {
+      "video_name": "Sitting (1)",
+      "class_name": "Sitting",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Sitting\\Sitting (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.536002599983476,
+          "2_single_pass_extraction_ffmpeg": 2.562579499994172,
+          "3_dct_feature_map_build_numpy": 0.08685120000154711,
+          "4_mv_parse_numpy": 1.078475000016624,
+          "5_ssd_detection_iframes": 0.09234159998595715,
+          "6_mv_box_propagation": 0.06885469998815097
+        },
+        "total_time_s": 6.425104599969927,
+        "pre_time_s": 6.263908299995819,
+        "inf_time_s": 0.09234159998595715,
+        "post_time_s": 0.06885469998815097,
+        "fps": 51.04975255990933,
+        "ms_per_frame": 19.58873353649368,
+        "detector_calls": 3,
+        "total_frames": 328,
+        "detector_call_latency": {
+          "mean_ms": 30.778866668697447,
+          "median_ms": 29.00509999017231,
+          "p95_ms": 36.64340000250377,
+          "std_ms": 4.919758831980191,
+          "n": 3
+        },
+        "cpu_seconds": 8.09375,
+        "extra_peak_rss_mb": 746.34765625,
+        "action_result": {
+          "predicted_class_id": 2,
+          "predicted_class_name": "sitting",
+          "confidence": 0.9251062870025635,
+          "all_probabilities": {
+            "clapping": 0.014868334867060184,
+            "meet and split": 0.014733339659869671,
+            "sitting": 0.9251062870025635,
+            "standing still": 0.009767869487404823,
+            "walking": 0.011202567256987095,
+            "walking while reading book": 0.008059422485530376,
+            "walking while using phone": 0.016262318938970566
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "sitting",
+              "probability": 0.9251062870025635
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.016262318938970566
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.014868334867060184
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.014733339659869671
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.011202567256987095
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 328
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 7.435902900004294
+        },
+        "total_time_s": 7.435902900004294,
+        "pre_time_s": 0.6219140995817725,
+        "inf_time_s": 2.6150670002098195,
+        "post_time_s": 1.0511956999544054,
+        "fps": 44.11031241408634,
+        "ms_per_frame": 22.670435670744798,
+        "detector_calls": 328,
+        "total_frames": 328,
+        "detector_call_latency": {
+          "mean_ms": 13.073709755323163,
+          "median_ms": 7.258850018843077,
+          "p95_ms": 34.6137399872532,
+          "std_ms": 9.887585231424051,
+          "n": 328
+        },
+        "cpu_seconds": 11.578125,
+        "extra_peak_rss_mb": 359.5703125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.8189027309417725,
+        "tp": 328,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 328
+      }
+    },
+    "Sitting (2)": {
+      "video_name": "Sitting (2)",
+      "class_name": "Sitting",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Sitting\\Sitting (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.2793584000028204,
+          "2_single_pass_extraction_ffmpeg": 2.18736120001995,
+          "3_dct_feature_map_build_numpy": 0.08419500000309199,
+          "4_mv_parse_numpy": 0.9329644000099506,
+          "5_ssd_detection_iframes": 0.10120889998506755,
+          "6_mv_box_propagation": 0.05848529998911545
+        },
+        "total_time_s": 5.643573200009996,
+        "pre_time_s": 5.483879000035813,
+        "inf_time_s": 0.10120889998506755,
+        "post_time_s": 0.05848529998911545,
+        "fps": 48.3736084081476,
+        "ms_per_frame": 20.672429304065922,
+        "detector_calls": 3,
+        "total_frames": 273,
+        "detector_call_latency": {
+          "mean_ms": 33.734099997673184,
+          "median_ms": 38.070800015702844,
+          "p95_ms": 39.46768999157939,
+          "std_ms": 7.258231713540234,
+          "n": 3
+        },
+        "cpu_seconds": 6.640625,
+        "extra_peak_rss_mb": 633.05859375,
+        "action_result": {
+          "predicted_class_id": 2,
+          "predicted_class_name": "sitting",
+          "confidence": 0.9230158925056458,
+          "all_probabilities": {
+            "clapping": 0.015959681943058968,
+            "meet and split": 0.014894862659275532,
+            "sitting": 0.9230158925056458,
+            "standing still": 0.010051146149635315,
+            "walking": 0.01153262984007597,
+            "walking while reading book": 0.008605618961155415,
+            "walking while using phone": 0.01594030298292637
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "sitting",
+              "probability": 0.9230158925056458
+            },
+            {
+              "rank": 2,
+              "class_name": "clapping",
+              "probability": 0.015959681943058968
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.01594030298292637
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.014894862659275532
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.01153262984007597
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 273
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 7.10685559999547
+        },
+        "total_time_s": 7.10685559999547,
+        "pre_time_s": 0.5510264997428749,
+        "inf_time_s": 2.631244600197533,
+        "post_time_s": 1.2374620999617036,
+        "fps": 38.41361290641307,
+        "ms_per_frame": 26.0324380952215,
+        "detector_calls": 273,
+        "total_frames": 273,
+        "detector_call_latency": {
+          "mean_ms": 16.189498900740336,
+          "median_ms": 7.616799994139001,
+          "p95_ms": 36.13175999489612,
+          "std_ms": 10.805235717129085,
+          "n": 273
+        },
+        "cpu_seconds": 10.671875,
+        "extra_peak_rss_mb": 353.99609375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.698152482509613,
+        "tp": 273,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 273
+      }
+    },
+    "Standing Still (1)": {
+      "video_name": "Standing Still (1)",
+      "class_name": "Standing Still",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Standing Still\\Standing Still (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.6752158000017516,
+          "2_single_pass_extraction_ffmpeg": 2.6844080000009853,
+          "3_dct_feature_map_build_numpy": 0.0853427000110969,
+          "4_mv_parse_numpy": 1.0635171000030823,
+          "5_ssd_detection_iframes": 0.11154409998562187,
+          "6_mv_box_propagation": 0.0697587999748066
+        },
+        "total_time_s": 6.689786499977345,
+        "pre_time_s": 6.508483600016916,
+        "inf_time_s": 0.11154409998562187,
+        "post_time_s": 0.0697587999748066,
+        "fps": 47.53514929079978,
+        "ms_per_frame": 21.03706446533756,
+        "detector_calls": 3,
+        "total_frames": 318,
+        "detector_call_latency": {
+          "mean_ms": 37.178866662240274,
+          "median_ms": 40.66889997920953,
+          "p95_ms": 43.32516001013573,
+          "std_ms": 7.125223420047415,
+          "n": 3
+        },
+        "cpu_seconds": 7.921875,
+        "extra_peak_rss_mb": 727.45703125,
+        "action_result": {
+          "predicted_class_id": 3,
+          "predicted_class_name": "standing still",
+          "confidence": 0.8106203675270081,
+          "all_probabilities": {
+            "clapping": 0.019733110442757607,
+            "meet and split": 0.020474988967180252,
+            "sitting": 0.0185847170650959,
+            "standing still": 0.8106203675270081,
+            "walking": 0.01702897623181343,
+            "walking while reading book": 0.014665537513792515,
+            "walking while using phone": 0.09889238327741623
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "standing still",
+              "probability": 0.8106203675270081
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.09889238327741623
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.020474988967180252
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.019733110442757607
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.0185847170650959
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 318
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.741730000008829
+        },
+        "total_time_s": 9.741730000008829,
+        "pre_time_s": 0.8168616000912152,
+        "inf_time_s": 3.95537199935643,
+        "post_time_s": 1.8408175000804476,
+        "fps": 32.6430726369661,
+        "ms_per_frame": 30.634371069210154,
+        "detector_calls": 318,
+        "total_frames": 318,
+        "detector_call_latency": {
+          "mean_ms": 20.795758174616644,
+          "median_ms": 21.506549994228408,
+          "p95_ms": 38.495735013566446,
+          "std_ms": 12.249336530326477,
+          "n": 318
+        },
+        "cpu_seconds": 13.40625,
+        "extra_peak_rss_mb": 360.5234375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.6893101334571838,
+        "tp": 318,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 318
+      }
+    },
+    "Standing Still (2)": {
+      "video_name": "Standing Still (2)",
+      "class_name": "Standing Still",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Standing Still\\Standing Still (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.573257999989437,
+          "2_single_pass_extraction_ffmpeg": 2.5956205999827944,
+          "3_dct_feature_map_build_numpy": 0.08750580000923946,
+          "4_mv_parse_numpy": 1.0163928999972995,
+          "5_ssd_detection_iframes": 0.09041390000493266,
+          "6_mv_box_propagation": 0.06550720002269372
+        },
+        "total_time_s": 6.428698400006397,
+        "pre_time_s": 6.27277729997877,
+        "inf_time_s": 0.09041390000493266,
+        "post_time_s": 0.06550720002269372,
+        "fps": 47.910164832074486,
+        "ms_per_frame": 20.872397402618173,
+        "detector_calls": 3,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 30.136033329957474,
+          "median_ms": 29.05589999863878,
+          "p95_ms": 36.82451998174656,
+          "std_ms": 5.775670255433185,
+          "n": 3
+        },
+        "cpu_seconds": 8.3125,
+        "extra_peak_rss_mb": 719.42578125,
+        "action_result": {
+          "predicted_class_id": 3,
+          "predicted_class_name": "standing still",
+          "confidence": 0.8463360071182251,
+          "all_probabilities": {
+            "clapping": 0.0202020350843668,
+            "meet and split": 0.02392970211803913,
+            "sitting": 0.01798541471362114,
+            "standing still": 0.8463360071182251,
+            "walking": 0.0181845985352993,
+            "walking while reading book": 0.015239803120493889,
+            "walking while using phone": 0.058122556656599045
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "standing still",
+              "probability": 0.8463360071182251
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.058122556656599045
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.02392970211803913
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.0202020350843668
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.0181845985352993
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 308
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.390451899991604
+        },
+        "total_time_s": 10.390451899991604,
+        "pre_time_s": 0.7760268001584336,
+        "inf_time_s": 3.631494300207123,
+        "post_time_s": 2.815118699800223,
+        "fps": 29.642599086594963,
+        "ms_per_frame": 33.735233441531186,
+        "detector_calls": 308,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 23.450129221317468,
+          "median_ms": 24.640249990625307,
+          "p95_ms": 44.99919499940005,
+          "std_ms": 14.083895389397664,
+          "n": 308
+        },
+        "cpu_seconds": 13.78125,
+        "extra_peak_rss_mb": 362.21484375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "mean_iou": 0.6955957412719727,
+        "tp": 308,
+        "fp": 0,
+        "fn": 308,
+        "gt_frames": 308
+      }
+    },
+    "Walking (1)": {
+      "video_name": "Walking (1)",
+      "class_name": "Walking",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1903190000157338,
+          "2_single_pass_extraction_ffmpeg": 1.266848500003107,
+          "3_dct_feature_map_build_numpy": 0.05910600000061095,
+          "4_mv_parse_numpy": 1.0291344000143,
+          "5_ssd_detection_iframes": 0.050385399983497337,
+          "6_mv_box_propagation": 0.06398690000060014
+        },
+        "total_time_s": 3.659780200017849,
+        "pre_time_s": 3.5454079000337515,
+        "inf_time_s": 0.050385399983497337,
+        "post_time_s": 0.06398690000060014,
+        "fps": 82.79185728107996,
+        "ms_per_frame": 12.078482508309733,
+        "detector_calls": 2,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 25.190300002577715,
+          "median_ms": 25.190300002577715,
+          "p95_ms": 26.269940011843573,
+          "std_ms": 1.1996000102953985,
+          "n": 2
+        },
+        "cpu_seconds": 4.375,
+        "extra_peak_rss_mb": 692.2109375,
+        "action_result": {
+          "predicted_class_id": 4,
+          "predicted_class_name": "walking",
+          "confidence": 0.7369125485420227,
+          "all_probabilities": {
+            "clapping": 0.02933965064585209,
+            "meet and split": 0.01749630644917488,
+            "sitting": 0.015683796256780624,
+            "standing still": 0.014315280131995678,
+            "walking": 0.7369125485420227,
+            "walking while reading book": 0.01397737581282854,
+            "walking while using phone": 0.17227500677108765
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking",
+              "probability": 0.7369125485420227
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.17227500677108765
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.02933965064585209
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.01749630644917488
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.015683796256780624
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 303
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 6.54073549999157
+        },
+        "total_time_s": 6.54073549999157,
+        "pre_time_s": 0.5673653997364454,
+        "inf_time_s": 2.1631310004740953,
+        "post_time_s": 0.8682942999585066,
+        "fps": 46.32506543039243,
+        "ms_per_frame": 21.586585808553036,
+        "detector_calls": 303,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 11.877197030260882,
+          "median_ms": 7.09979998646304,
+          "p95_ms": 32.20330002368425,
+          "std_ms": 8.335657037341317,
+          "n": 303
+        },
+        "cpu_seconds": 8.203125,
+        "extra_peak_rss_mb": 345.42578125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.02054794520547945,
+          "recall": 0.02054794520547945,
+          "f1": 0.02054794520547945,
+          "mean_iou": 0.5487943291664124,
+          "tp": 6,
+          "fp": 286,
+          "fn": 286,
+          "gt_frames": 292
+        },
+        "yolo_full": {
+          "precision": 0.07508532423208192,
+          "recall": 0.07534246575342465,
+          "f1": 0.07521367521367521,
+          "mean_iou": 0.5447058885893706,
+          "tp": 22,
+          "fp": 271,
+          "fn": 270,
+          "gt_frames": 292
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Walking.txt"
+      }
+    },
+    "Walking (2)": {
+      "video_name": "Walking (2)",
+      "class_name": "Walking",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1783770000038203,
+          "2_single_pass_extraction_ffmpeg": 1.2526499000086915,
+          "3_dct_feature_map_build_numpy": 0.06423749998793937,
+          "4_mv_parse_numpy": 1.016646000003675,
+          "5_ssd_detection_iframes": 0.06297579998499714,
+          "6_mv_box_propagation": 0.06596569999237545
+        },
+        "total_time_s": 3.6408518999814987,
+        "pre_time_s": 3.511910400004126,
+        "inf_time_s": 0.06297579998499714,
+        "post_time_s": 0.06596569999237545,
+        "fps": 83.22228102756382,
+        "ms_per_frame": 12.016012871226069,
+        "detector_calls": 2,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 31.485150000662543,
+          "median_ms": 31.485150000662543,
+          "p95_ms": 35.694405004323926,
+          "std_ms": 4.676950004068203,
+          "n": 2
+        },
+        "cpu_seconds": 3.796875,
+        "extra_peak_rss_mb": 710.30078125,
+        "action_result": {
+          "predicted_class_id": 4,
+          "predicted_class_name": "walking",
+          "confidence": 0.8258187174797058,
+          "all_probabilities": {
+            "clapping": 0.029768826439976692,
+            "meet and split": 0.04321540519595146,
+            "sitting": 0.015951672568917274,
+            "standing still": 0.013736697845160961,
+            "walking": 0.8258187174797058,
+            "walking while reading book": 0.010392255149781704,
+            "walking while using phone": 0.061116501688957214
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking",
+              "probability": 0.8258187174797058
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.061116501688957214
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.04321540519595146
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.029768826439976692
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.015951672568917274
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 303
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 7.384255999990273
+        },
+        "total_time_s": 7.384255999990273,
+        "pre_time_s": 0.580525800032774,
+        "inf_time_s": 2.701617100246949,
+        "post_time_s": 1.1429981997353025,
+        "fps": 41.03324695140568,
+        "ms_per_frame": 24.370481848152718,
+        "detector_calls": 303,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 14.60442607265685,
+          "median_ms": 7.1810999943409115,
+          "p95_ms": 36.539079985232085,
+          "std_ms": 10.860390628196997,
+          "n": 303
+        },
+        "cpu_seconds": 10.03125,
+        "extra_peak_rss_mb": 346.17578125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.0136986301369863,
+          "recall": 0.0136986301369863,
+          "f1": 0.0136986301369863,
+          "mean_iou": 0.5150316953659058,
+          "tp": 4,
+          "fp": 288,
+          "fn": 288,
+          "gt_frames": 292
+        },
+        "yolo_full": {
+          "precision": 0.07876712328767123,
+          "recall": 0.07876712328767123,
+          "f1": 0.07876712328767123,
+          "mean_iou": 0.5498067890293181,
+          "tp": 23,
+          "fp": 269,
+          "fn": 269,
+          "gt_frames": 292
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Walking.txt"
+      }
+    },
+    "Walking While Reading Book (1)": {
+      "video_name": "Walking While Reading Book (1)",
+      "class_name": "Walking While Reading Book",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Reading Book\\Walking While Reading Book (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.8823832000198308,
+          "2_single_pass_extraction_ffmpeg": 0.8996777999855112,
+          "3_dct_feature_map_build_numpy": 0.04970519998460077,
+          "4_mv_parse_numpy": 0.9433088999940082,
+          "5_ssd_detection_iframes": 0.04898890000185929,
+          "6_mv_box_propagation": 0.08043510001152754
+        },
+        "total_time_s": 2.904499099997338,
+        "pre_time_s": 2.775075099983951,
+        "inf_time_s": 0.04898890000185929,
+        "post_time_s": 0.08043510001152754,
+        "fps": 101.22227271486139,
+        "ms_per_frame": 9.879248639446729,
+        "detector_calls": 2,
+        "total_frames": 294,
+        "detector_call_latency": {
+          "mean_ms": 24.491999996826053,
+          "median_ms": 24.491999996826053,
+          "p95_ms": 25.34807999327313,
+          "std_ms": 0.9511999960523099,
+          "n": 2
+        },
+        "cpu_seconds": 3.484375,
+        "extra_peak_rss_mb": 691.6484375,
+        "action_result": {
+          "predicted_class_id": 5,
+          "predicted_class_name": "walking while reading book",
+          "confidence": 0.8219500184059143,
+          "all_probabilities": {
+            "clapping": 0.023951882496476173,
+            "meet and split": 0.028511419892311096,
+            "sitting": 0.0232312623411417,
+            "standing still": 0.021590983495116234,
+            "walking": 0.04066791385412216,
+            "walking while reading book": 0.8219500184059143,
+            "walking while using phone": 0.04009658470749855
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while reading book",
+              "probability": 0.8219500184059143
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.04066791385412216
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.04009658470749855
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.028511419892311096
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.023951882496476173
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 294
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 5.943824300018605
+        },
+        "total_time_s": 5.943824300018605,
+        "pre_time_s": 0.456139900139533,
+        "inf_time_s": 2.012840000243159,
+        "post_time_s": 0.74129899952095,
+        "fps": 49.46310408251465,
+        "ms_per_frame": 20.217089455845596,
+        "detector_calls": 294,
+        "total_frames": 294,
+        "detector_call_latency": {
+          "mean_ms": 10.91931598606681,
+          "median_ms": 6.949950009584427,
+          "p95_ms": 28.09852498612599,
+          "std_ms": 7.639614099140522,
+          "n": 294
+        },
+        "cpu_seconds": 8.125,
+        "extra_peak_rss_mb": 343.796875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.6870748299319728,
+        "recall": 0.6139817629179332,
+        "f1": 0.6484751203852327,
+        "mean_iou": 0.6307305097579956,
+        "tp": 202,
+        "fp": 92,
+        "fn": 127,
+        "gt_frames": 294
+      }
+    },
+    "Walking While Reading Book (2)": {
+      "video_name": "Walking While Reading Book (2)",
+      "class_name": "Walking While Reading Book",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Reading Book\\Walking While Reading Book (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.8099279000016395,
+          "2_single_pass_extraction_ffmpeg": 1.0441079000011086,
+          "3_dct_feature_map_build_numpy": 0.06588320000446402,
+          "4_mv_parse_numpy": 0.8948525000014342,
+          "5_ssd_detection_iframes": 0.06155770001350902,
+          "6_mv_box_propagation": 0.059704899991629645
+        },
+        "total_time_s": 2.936034100013785,
+        "pre_time_s": 2.8147715000086464,
+        "inf_time_s": 0.06155770001350902,
+        "post_time_s": 0.059704899991629645,
+        "fps": 91.27959378903049,
+        "ms_per_frame": 10.955351119454422,
+        "detector_calls": 2,
+        "total_frames": 268,
+        "detector_call_latency": {
+          "mean_ms": 30.776449988479726,
+          "median_ms": 30.776449988479726,
+          "p95_ms": 37.46331499860389,
+          "std_ms": 7.429850011249073,
+          "n": 2
+        },
+        "cpu_seconds": 3.84375,
+        "extra_peak_rss_mb": 606.625,
+        "action_result": {
+          "predicted_class_id": 5,
+          "predicted_class_name": "walking while reading book",
+          "confidence": 0.7292255163192749,
+          "all_probabilities": {
+            "clapping": 0.030990349128842354,
+            "meet and split": 0.04582417011260986,
+            "sitting": 0.029773982241749763,
+            "standing still": 0.028808556497097015,
+            "walking": 0.07866068929433823,
+            "walking while reading book": 0.7292255163192749,
+            "walking while using phone": 0.0567166730761528
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while reading book",
+              "probability": 0.7292255163192749
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.07866068929433823
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.0567166730761528
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.04582417011260986
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.030990349128842354
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 268
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.339545900002122
+        },
+        "total_time_s": 9.339545900002122,
+        "pre_time_s": 0.7810050998232327,
+        "inf_time_s": 3.587987900682492,
+        "post_time_s": 2.1799892995040864,
+        "fps": 28.695185276613834,
+        "ms_per_frame": 34.84905186567956,
+        "detector_calls": 268,
+        "total_frames": 268,
+        "detector_call_latency": {
+          "mean_ms": 24.436501119439594,
+          "median_ms": 24.218699996708892,
+          "p95_ms": 54.9197350075701,
+          "std_ms": 15.468357206598087,
+          "n": 268
+        },
+        "cpu_seconds": 10.71875,
+        "extra_peak_rss_mb": 344.890625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.8432835820895522,
+        "recall": 0.7820069204152249,
+        "f1": 0.8114901256732496,
+        "mean_iou": 0.62406986951828,
+        "tp": 226,
+        "fp": 42,
+        "fn": 63,
+        "gt_frames": 268
+      }
+    },
+    "Walking While Using Phone (1)": {
+      "video_name": "Walking While Using Phone (1)",
+      "class_name": "Walking While Using Phone",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Using Phone\\Walking While Using Phone (1).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 3.3034806000068784,
+          "2_single_pass_extraction_ffmpeg": 3.3467801999941003,
+          "3_dct_feature_map_build_numpy": 0.09399059999850579,
+          "4_mv_parse_numpy": 1.1616693999967538,
+          "5_ssd_detection_iframes": 0.10561970001435839,
+          "6_mv_box_propagation": 0.0730189000023529
+        },
+        "total_time_s": 8.08455940001295,
+        "pre_time_s": 7.905920799996238,
+        "inf_time_s": 0.10561970001435839,
+        "post_time_s": 0.0730189000023529,
+        "fps": 39.08685487541768,
+        "ms_per_frame": 25.584048734218193,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 35.204499998750784,
+          "median_ms": 38.71540000545792,
+          "p95_ms": 39.43495001003612,
+          "std_ms": 5.540117360314559,
+          "n": 3
+        },
+        "cpu_seconds": 9.109375,
+        "extra_peak_rss_mb": 733.13671875,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.926417887210846,
+          "all_probabilities": {
+            "clapping": 0.011855051852762699,
+            "meet and split": 0.013034543953835964,
+            "sitting": 0.011853496544063091,
+            "standing still": 0.009199407882988453,
+            "walking": 0.01977122388780117,
+            "walking while reading book": 0.007868419401347637,
+            "walking while using phone": 0.926417887210846
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.926417887210846
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.01977122388780117
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.013034543953835964
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.011855051852762699
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.011853496544063091
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.275145699997665
+        },
+        "total_time_s": 10.275145699997665,
+        "pre_time_s": 0.7874253999325447,
+        "inf_time_s": 4.19113930023741,
+        "post_time_s": 2.0492274998687208,
+        "fps": 30.753821816859666,
+        "ms_per_frame": 32.51628386075211,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 22.239848734299606,
+          "median_ms": 22.15789999172557,
+          "p95_ms": 43.36542499368079,
+          "std_ms": 12.567321090063883,
+          "n": 316
+        },
+        "cpu_seconds": 13.296875,
+        "extra_peak_rss_mb": 356.73828125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.5569620253164557,
+        "recall": 0.5482866043613707,
+        "f1": 0.5525902668759811,
+        "mean_iou": 0.6640719771385193,
+        "tp": 176,
+        "fp": 140,
+        "fn": 145,
+        "gt_frames": 316
+      }
+    },
+    "Walking While Using Phone (2)": {
+      "video_name": "Walking While Using Phone (2)",
+      "class_name": "Walking While Using Phone",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Using Phone\\Walking While Using Phone (2).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 3.3636775000195485,
+          "2_single_pass_extraction_ffmpeg": 3.32125310000265,
+          "3_dct_feature_map_build_numpy": 0.08840179999242537,
+          "4_mv_parse_numpy": 1.0335201999987476,
+          "5_ssd_detection_iframes": 0.09709929997916333,
+          "6_mv_box_propagation": 0.07458679997944273
+        },
+        "total_time_s": 7.978538699971978,
+        "pre_time_s": 7.806852600013372,
+        "inf_time_s": 0.09709929997916333,
+        "post_time_s": 0.07458679997944273,
+        "fps": 39.60625020232212,
+        "ms_per_frame": 25.24854018978474,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 32.36449999773564,
+          "median_ms": 30.90009998413734,
+          "p95_ms": 38.6431600083597,
+          "std_ms": 5.332631425063803,
+          "n": 3
+        },
+        "cpu_seconds": 9.046875,
+        "extra_peak_rss_mb": 720.2890625,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.9305992722511292,
+          "all_probabilities": {
+            "clapping": 0.01297468040138483,
+            "meet and split": 0.01317390613257885,
+            "sitting": 0.011526328511536121,
+            "standing still": 0.00968460738658905,
+            "walking": 0.013693192973732948,
+            "walking while reading book": 0.008348074741661549,
+            "walking while using phone": 0.9305992722511292
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.9305992722511292
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.013693192973732948
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.01317390613257885
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.01297468040138483
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.011526328511536121
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 11.120000099996105
+        },
+        "total_time_s": 11.120000099996105,
+        "pre_time_s": 0.973646000289591,
+        "inf_time_s": 4.458796999388142,
+        "post_time_s": 2.363919400027953,
+        "fps": 28.417265931509363,
+        "ms_per_frame": 35.18987373416489,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 24.67203291046103,
+          "median_ms": 24.499949999153614,
+          "p95_ms": 47.880699996312615,
+          "std_ms": 13.041475844877649,
+          "n": 316
+        },
+        "cpu_seconds": 15.15625,
+        "extra_peak_rss_mb": 360.46875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.5316455696202531,
+        "recall": 0.49557522123893805,
+        "f1": 0.5129770992366411,
+        "mean_iou": 0.6538698077201843,
+        "tp": 168,
+        "fp": 148,
+        "fn": 171,
+        "gt_frames": 316
+      }
+    },
+    "Clapping (3)": {
+      "video_name": "Clapping (3)",
+      "class_name": "Clapping",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Clapping\\Clapping (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.2522035999863874,
+          "2_single_pass_extraction_ffmpeg": 1.4470169999985956,
+          "3_dct_feature_map_build_numpy": 0.04831760001252405,
+          "4_mv_parse_numpy": 1.0492723000061233,
+          "5_ssd_detection_iframes": 0.0876900999865029,
+          "6_mv_box_propagation": 0.0719694999861531
+        },
+        "total_time_s": 3.9564700999762863,
+        "pre_time_s": 3.7968105000036303,
+        "inf_time_s": 0.0876900999865029,
+        "post_time_s": 0.0719694999861531,
+        "fps": 79.86917429298758,
+        "ms_per_frame": 12.520474999924957,
+        "detector_calls": 2,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 43.841549995704554,
+          "median_ms": 43.841549995704554,
+          "p95_ms": 47.520974998769816,
+          "std_ms": 4.088250003405847,
+          "n": 2
+        },
+        "cpu_seconds": 4.65625,
+        "extra_peak_rss_mb": 747.5859375,
+        "action_result": {
+          "predicted_class_id": 0,
+          "predicted_class_name": "clapping",
+          "confidence": 0.9145779609680176,
+          "all_probabilities": {
+            "clapping": 0.9145779609680176,
+            "meet and split": 0.014596737921237946,
+            "sitting": 0.012795337475836277,
+            "standing still": 0.01041477546095848,
+            "walking": 0.022393979132175446,
+            "walking while reading book": 0.008929538540542126,
+            "walking while using phone": 0.016291657462716103
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "clapping",
+              "probability": 0.9145779609680176
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.022393979132175446
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.016291657462716103
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.014596737921237946
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.012795337475836277
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.498928699991666
+        },
+        "total_time_s": 10.498928699991666,
+        "pre_time_s": 0.7285647999669891,
+        "inf_time_s": 4.412031999672763,
+        "post_time_s": 2.2153573004179634,
+        "fps": 30.098308982729908,
+        "ms_per_frame": 33.22445791136603,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 23.278335759676317,
+          "median_ms": 12.704400010989048,
+          "p95_ms": 59.89070000941865,
+          "std_ms": 17.32604066729009,
+          "n": 316
+        },
+        "cpu_seconds": 11.5,
+        "extra_peak_rss_mb": 382.3125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.8957654723127035,
+          "recall": 0.8957654723127035,
+          "f1": 0.8957654723127035,
+          "mean_iou": 0.6234944462776184,
+          "tp": 275,
+          "fp": 32,
+          "fn": 32,
+          "gt_frames": 307
+        },
+        "yolo_full": {
+          "precision": 0.9706840390879479,
+          "recall": 0.9706840390879479,
+          "f1": 0.9706840390879479,
+          "mean_iou": 0.5911495406233784,
+          "tp": 298,
+          "fp": 9,
+          "fn": 9,
+          "gt_frames": 307
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Clapping.txt"
+      }
+    },
+    "Clapping (4)": {
+      "video_name": "Clapping (4)",
+      "class_name": "Clapping",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Clapping\\Clapping (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.159275299985893,
+          "2_single_pass_extraction_ffmpeg": 1.2640428000013344,
+          "3_dct_feature_map_build_numpy": 0.05258260000846349,
+          "4_mv_parse_numpy": 1.0593165000027511,
+          "5_ssd_detection_iframes": 0.0703990000183694,
+          "6_mv_box_propagation": 0.0730189000023529
+        },
+        "total_time_s": 3.6786351000191644,
+        "pre_time_s": 3.535217199998442,
+        "inf_time_s": 0.0703990000183694,
+        "post_time_s": 0.0730189000023529,
+        "fps": 83.18302622578842,
+        "ms_per_frame": 12.021683333395963,
+        "detector_calls": 2,
+        "total_frames": 306,
+        "detector_call_latency": {
+          "mean_ms": 35.19524999137502,
+          "median_ms": 35.19524999137502,
+          "p95_ms": 41.33770499465754,
+          "std_ms": 6.8249500036472455,
+          "n": 2
+        },
+        "cpu_seconds": 4.25,
+        "extra_peak_rss_mb": 719.8515625,
+        "action_result": {
+          "predicted_class_id": 0,
+          "predicted_class_name": "clapping",
+          "confidence": 0.9227239489555359,
+          "all_probabilities": {
+            "clapping": 0.9227239489555359,
+            "meet and split": 0.015529152005910873,
+            "sitting": 0.013232617639005184,
+            "standing still": 0.010688579641282558,
+            "walking": 0.011895385570824146,
+            "walking while reading book": 0.009302373044192791,
+            "walking while using phone": 0.016627870500087738
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "clapping",
+              "probability": 0.9227239489555359
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.016627870500087738
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.015529152005910873
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.013232617639005184
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.011895385570824146
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 306
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.562394500011578
+        },
+        "total_time_s": 10.562394500011578,
+        "pre_time_s": 0.7672817001293879,
+        "inf_time_s": 4.456730099598644,
+        "post_time_s": 2.1285125000576954,
+        "fps": 28.970703565338766,
+        "ms_per_frame": 34.517629085005154,
+        "detector_calls": 306,
+        "total_frames": 306,
+        "detector_call_latency": {
+          "mean_ms": 24.027857188842248,
+          "median_ms": 24.763899986282922,
+          "p95_ms": 51.185550008085556,
+          "std_ms": 14.27694460523161,
+          "n": 306
+        },
+        "cpu_seconds": 11.390625,
+        "extra_peak_rss_mb": 344.55859375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 1.0,
+          "recall": 0.996742671009772,
+          "f1": 0.99836867862969,
+          "mean_iou": 0.6141777038574219,
+          "tp": 306,
+          "fp": 0,
+          "fn": 1,
+          "gt_frames": 307
+        },
+        "yolo_full": {
+          "precision": 1.0,
+          "recall": 0.996742671009772,
+          "f1": 0.99836867862969,
+          "mean_iou": 0.584301071124497,
+          "tp": 306,
+          "fp": 0,
+          "fn": 1,
+          "gt_frames": 307
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Clapping.txt"
+      }
+    },
+    "Clapping (5)": {
+      "video_name": "Clapping (5)",
+      "class_name": "Clapping",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Clapping\\Clapping (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1185153000114951,
+          "2_single_pass_extraction_ffmpeg": 1.2205126000044402,
+          "3_dct_feature_map_build_numpy": 0.05524770001647994,
+          "4_mv_parse_numpy": 1.0264431000105105,
+          "5_ssd_detection_iframes": 0.06553890000213869,
+          "6_mv_box_propagation": 0.05671619999338873
+        },
+        "total_time_s": 3.542973800038453,
+        "pre_time_s": 3.4207187000429258,
+        "inf_time_s": 0.06553890000213869,
+        "post_time_s": 0.05671619999338873,
+        "fps": 87.21487017393306,
+        "ms_per_frame": 11.46593462795616,
+        "detector_calls": 2,
+        "total_frames": 309,
+        "detector_call_latency": {
+          "mean_ms": 32.76519999781158,
+          "median_ms": 32.76519999781158,
+          "p95_ms": 36.59451998973964,
+          "std_ms": 4.254799991031177,
+          "n": 2
+        },
+        "cpu_seconds": 4.140625,
+        "extra_peak_rss_mb": 709.28125,
+        "action_result": {
+          "predicted_class_id": 0,
+          "predicted_class_name": "clapping",
+          "confidence": 0.9293211102485657,
+          "all_probabilities": {
+            "clapping": 0.9293211102485657,
+            "meet and split": 0.014084193855524063,
+            "sitting": 0.012037322856485844,
+            "standing still": 0.00969404261559248,
+            "walking": 0.011518651619553566,
+            "walking while reading book": 0.0081948172301054,
+            "walking while using phone": 0.015149830840528011
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "clapping",
+              "probability": 0.9293211102485657
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.015149830840528011
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.014084193855524063
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.012037322856485844
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.011518651619553566
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 309
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.684685500018531
+        },
+        "total_time_s": 8.684685500018531,
+        "pre_time_s": 0.6360184999648482,
+        "inf_time_s": 3.3574976003728807,
+        "post_time_s": 1.6041242997453082,
+        "fps": 35.57987217836969,
+        "ms_per_frame": 28.105778317212078,
+        "detector_calls": 309,
+        "total_frames": 309,
+        "detector_call_latency": {
+          "mean_ms": 18.115341100592353,
+          "median_ms": 19.368700013728812,
+          "p95_ms": 37.97619999386369,
+          "std_ms": 12.094213217154657,
+          "n": 309
+        },
+        "cpu_seconds": 11.0,
+        "extra_peak_rss_mb": 347.66015625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "mean_iou": 0.8122638463973999,
+          "tp": 307,
+          "fp": 0,
+          "fn": 0,
+          "gt_frames": 307
+        },
+        "yolo_full": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "mean_iou": 0.911818935403175,
+          "tp": 307,
+          "fp": 0,
+          "fn": 0,
+          "gt_frames": 307
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Clapping.txt"
+      }
+    },
+    "Meet and Split (3)": {
+      "video_name": "Meet and Split (3)",
+      "class_name": "Meet and Split",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Meet and Split\\Meet and Split (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.9040517999965232,
+          "2_single_pass_extraction_ffmpeg": 1.0281705999805126,
+          "3_dct_feature_map_build_numpy": 0.051603400002932176,
+          "4_mv_parse_numpy": 0.7821645999792963,
+          "5_ssd_detection_iframes": 0.06452909999643452,
+          "6_mv_box_propagation": 0.05518840000149794
+        },
+        "total_time_s": 2.885707899957197,
+        "pre_time_s": 2.7659903999592643,
+        "inf_time_s": 0.06452909999643452,
+        "post_time_s": 0.05518840000149794,
+        "fps": 81.7823591928693,
+        "ms_per_frame": 12.227575847276258,
+        "detector_calls": 2,
+        "total_frames": 236,
+        "detector_call_latency": {
+          "mean_ms": 32.25760001805611,
+          "median_ms": 32.25760001805611,
+          "p95_ms": 39.41584001586307,
+          "std_ms": 7.953599997563288,
+          "n": 2
+        },
+        "cpu_seconds": 3.296875,
+        "extra_peak_rss_mb": 533.69921875,
+        "action_result": {
+          "predicted_class_id": 1,
+          "predicted_class_name": "meet and split",
+          "confidence": 0.4288645088672638,
+          "all_probabilities": {
+            "clapping": 0.02394510619342327,
+            "meet and split": 0.4288645088672638,
+            "sitting": 0.02212112955749035,
+            "standing still": 0.01945837214589119,
+            "walking": 0.28661006689071655,
+            "walking while reading book": 0.02954898215830326,
+            "walking while using phone": 0.18945185840129852
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "meet and split",
+              "probability": 0.4288645088672638
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.28661006689071655
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.18945185840129852
+            },
+            {
+              "rank": 4,
+              "class_name": "walking while reading book",
+              "probability": 0.02954898215830326
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.02394510619342327
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 236
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 5.388645300001372
+        },
+        "total_time_s": 5.388645300001372,
+        "pre_time_s": 0.3447288000606932,
+        "inf_time_s": 1.7911993996240199,
+        "post_time_s": 0.8853047002630774,
+        "fps": 43.79579409317216,
+        "ms_per_frame": 22.83324279661598,
+        "detector_calls": 236,
+        "total_frames": 236,
+        "detector_call_latency": {
+          "mean_ms": 12.801834321812672,
+          "median_ms": 8.04889998107683,
+          "p95_ms": 33.44587500032503,
+          "std_ms": 8.977930644985484,
+          "n": 236
+        },
+        "cpu_seconds": 6.46875,
+        "extra_peak_rss_mb": 349.28515625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.7333333333333333,
+        "recall": 0.49464668094218417,
+        "f1": 0.5907928388746803,
+        "mean_iou": 0.5889633893966675,
+        "tp": 231,
+        "fp": 84,
+        "fn": 236,
+        "gt_frames": 236
+      }
+    },
+    "Meet and Split (4)": {
+      "video_name": "Meet and Split (4)",
+      "class_name": "Meet and Split",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Meet and Split\\Meet and Split (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.9326867999916431,
+          "2_single_pass_extraction_ffmpeg": 0.9942107999813743,
+          "3_dct_feature_map_build_numpy": 0.05598380000446923,
+          "4_mv_parse_numpy": 0.8300637000065763,
+          "5_ssd_detection_iframes": 0.06668879999779165,
+          "6_mv_box_propagation": 0.0639950999757275
+        },
+        "total_time_s": 2.943628999957582,
+        "pre_time_s": 2.812945099984063,
+        "inf_time_s": 0.06668879999779165,
+        "post_time_s": 0.0639950999757275,
+        "fps": 79.15399664949543,
+        "ms_per_frame": 12.633600858187048,
+        "detector_calls": 2,
+        "total_frames": 233,
+        "detector_call_latency": {
+          "mean_ms": 33.34174999326933,
+          "median_ms": 33.34174999326933,
+          "p95_ms": 41.33163499791408,
+          "std_ms": 8.877650005160831,
+          "n": 2
+        },
+        "cpu_seconds": 3.90625,
+        "extra_peak_rss_mb": 535.37109375,
+        "action_result": {
+          "predicted_class_id": 1,
+          "predicted_class_name": "meet and split",
+          "confidence": 0.5583199858665466,
+          "all_probabilities": {
+            "clapping": 0.024201851338148117,
+            "meet and split": 0.5583199858665466,
+            "sitting": 0.02702132798731327,
+            "standing still": 0.020680077373981476,
+            "walking": 0.056781817227602005,
+            "walking while reading book": 0.09916012734174728,
+            "walking while using phone": 0.21383477747440338
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "meet and split",
+              "probability": 0.5583199858665466
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.21383477747440338
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while reading book",
+              "probability": 0.09916012734174728
+            },
+            {
+              "rank": 4,
+              "class_name": "walking",
+              "probability": 0.056781817227602005
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.02702132798731327
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 233
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 6.153274299984332
+        },
+        "total_time_s": 6.153274299984332,
+        "pre_time_s": 0.4206956998677924,
+        "inf_time_s": 2.1785870998864993,
+        "post_time_s": 1.2018122002773453,
+        "fps": 37.86601874722102,
+        "ms_per_frame": 26.408902575040052,
+        "detector_calls": 233,
+        "total_frames": 233,
+        "detector_call_latency": {
+          "mean_ms": 16.313712446487713,
+          "median_ms": 11.87520002713427,
+          "p95_ms": 41.04211999801918,
+          "std_ms": 11.167013702713554,
+          "n": 233
+        },
+        "cpu_seconds": 6.984375,
+        "extra_peak_rss_mb": 349.91015625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.4957081545064378,
+        "recall": 0.4935897435897436,
+        "f1": 0.49464668094218417,
+        "mean_iou": 0.6183231472969055,
+        "tp": 231,
+        "fp": 235,
+        "fn": 237,
+        "gt_frames": 233
+      }
+    },
+    "Meet and Split (5)": {
+      "video_name": "Meet and Split (5)",
+      "class_name": "Meet and Split",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Meet and Split\\Meet and Split (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.2413402999809477,
+          "2_single_pass_extraction_ffmpeg": 1.377568700001575,
+          "3_dct_feature_map_build_numpy": 0.09135900001274422,
+          "4_mv_parse_numpy": 1.099675000004936,
+          "5_ssd_detection_iframes": 0.09507460001623258,
+          "6_mv_box_propagation": 0.07295060000615194
+        },
+        "total_time_s": 3.9779682000225876,
+        "pre_time_s": 3.809943000000203,
+        "inf_time_s": 0.09507460001623258,
+        "post_time_s": 0.07295060000615194,
+        "fps": 77.92923030361071,
+        "ms_per_frame": 12.832155483943831,
+        "detector_calls": 3,
+        "total_frames": 310,
+        "detector_call_latency": {
+          "mean_ms": 31.689466666042183,
+          "median_ms": 27.63769999728538,
+          "p95_ms": 40.01737999205943,
+          "std_ms": 6.892381480965486,
+          "n": 3
+        },
+        "cpu_seconds": 4.296875,
+        "extra_peak_rss_mb": 711.4296875,
+        "action_result": {
+          "predicted_class_id": 1,
+          "predicted_class_name": "meet and split",
+          "confidence": 0.45562055706977844,
+          "all_probabilities": {
+            "clapping": 0.032967183738946915,
+            "meet and split": 0.45562055706977844,
+            "sitting": 0.03273317217826843,
+            "standing still": 0.02911449782550335,
+            "walking": 0.11454605311155319,
+            "walking while reading book": 0.03072422556579113,
+            "walking while using phone": 0.3042944073677063
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "meet and split",
+              "probability": 0.45562055706977844
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.3042944073677063
+            },
+            {
+              "rank": 3,
+              "class_name": "walking",
+              "probability": 0.11454605311155319
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.032967183738946915
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.03273317217826843
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 310
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 12.619023899984313
+        },
+        "total_time_s": 12.619023899984313,
+        "pre_time_s": 0.732569300045725,
+        "inf_time_s": 5.105938600376248,
+        "post_time_s": 3.5664292999426834,
+        "fps": 24.566083910847127,
+        "ms_per_frame": 40.70652870962682,
+        "detector_calls": 310,
+        "total_frames": 310,
+        "detector_call_latency": {
+          "mean_ms": 30.338507097950504,
+          "median_ms": 21.255550003843382,
+          "p95_ms": 66.74534500052688,
+          "std_ms": 22.951710755194696,
+          "n": 310
+        },
+        "cpu_seconds": 13.515625,
+        "extra_peak_rss_mb": 350.8125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.5432900432900433,
+        "recall": 0.4009584664536741,
+        "f1": 0.4613970588235293,
+        "mean_iou": 0.5865857601165771,
+        "tp": 251,
+        "fp": 211,
+        "fn": 375,
+        "gt_frames": 310
+      }
+    },
+    "Sitting (3)": {
+      "video_name": "Sitting (3)",
+      "class_name": "Sitting",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Sitting\\Sitting (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.6464376999938395,
+          "2_single_pass_extraction_ffmpeg": 2.668078399990918,
+          "3_dct_feature_map_build_numpy": 0.09561769998981617,
+          "4_mv_parse_numpy": 1.1226005000062287,
+          "5_ssd_detection_iframes": 0.09155699997791089,
+          "6_mv_box_propagation": 0.07028120002360083
+        },
+        "total_time_s": 6.694572499982314,
+        "pre_time_s": 6.5327342999808025,
+        "inf_time_s": 0.09155699997791089,
+        "post_time_s": 0.07028120002360083,
+        "fps": 47.202416584604144,
+        "ms_per_frame": 21.18535601260226,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 30.516766671401758,
+          "median_ms": 29.327700001886114,
+          "p95_ms": 36.214860004838556,
+          "std_ms": 4.865060677028918,
+          "n": 3
+        },
+        "cpu_seconds": 8.21875,
+        "extra_peak_rss_mb": 721.16796875,
+        "action_result": {
+          "predicted_class_id": 2,
+          "predicted_class_name": "sitting",
+          "confidence": 0.9193100333213806,
+          "all_probabilities": {
+            "clapping": 0.015486874617636204,
+            "meet and split": 0.015127829276025295,
+            "sitting": 0.9193100333213806,
+            "standing still": 0.012647593393921852,
+            "walking": 0.011893164366483688,
+            "walking while reading book": 0.009297918528318405,
+            "walking while using phone": 0.016236597672104836
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "sitting",
+              "probability": 0.9193100333213806
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.016236597672104836
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.015486874617636204
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.015127829276025295
+            },
+            {
+              "rank": 5,
+              "class_name": "standing still",
+              "probability": 0.012647593393921852
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 11.616888199991081
+        },
+        "total_time_s": 11.616888199991081,
+        "pre_time_s": 0.8716915998375043,
+        "inf_time_s": 4.881656400102656,
+        "post_time_s": 2.5120856998837553,
+        "fps": 27.20177680630882,
+        "ms_per_frame": 36.76230443035152,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 26.156435758936443,
+          "median_ms": 22.982249996857718,
+          "p95_ms": 59.42354998114752,
+          "std_ms": 17.70415843884016,
+          "n": 316
+        },
+        "cpu_seconds": 13.59375,
+        "extra_peak_rss_mb": 354.3671875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.7230468392372131,
+        "tp": 316,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 316
+      }
+    },
+    "Sitting (4)": {
+      "video_name": "Sitting (4)",
+      "class_name": "Sitting",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Sitting\\Sitting (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.2299529000010807,
+          "2_single_pass_extraction_ffmpeg": 2.2527624999929685,
+          "3_dct_feature_map_build_numpy": 0.0892677000083495,
+          "4_mv_parse_numpy": 0.9665108000044711,
+          "5_ssd_detection_iframes": 0.09158800001023337,
+          "6_mv_box_propagation": 0.06321130000287667
+        },
+        "total_time_s": 5.69329320001998,
+        "pre_time_s": 5.53849390000687,
+        "inf_time_s": 0.09158800001023337,
+        "post_time_s": 0.06321130000287667,
+        "fps": 49.70761035089618,
+        "ms_per_frame": 20.117643816325014,
+        "detector_calls": 3,
+        "total_frames": 283,
+        "detector_call_latency": {
+          "mean_ms": 30.527333340918023,
+          "median_ms": 28.517500002635643,
+          "p95_ms": 37.578880006913096,
+          "std_ms": 5.931876004580457,
+          "n": 3
+        },
+        "cpu_seconds": 6.75,
+        "extra_peak_rss_mb": 660.17578125,
+        "action_result": {
+          "predicted_class_id": 2,
+          "predicted_class_name": "sitting",
+          "confidence": 0.9228596091270447,
+          "all_probabilities": {
+            "clapping": 0.015115511603653431,
+            "meet and split": 0.014941703528165817,
+            "sitting": 0.9228596091270447,
+            "standing still": 0.010841050185263157,
+            "walking": 0.011575658805668354,
+            "walking while reading book": 0.008783613331615925,
+            "walking while using phone": 0.015882786363363266
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "sitting",
+              "probability": 0.9228596091270447
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.015882786363363266
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.015115511603653431
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.014941703528165817
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.011575658805668354
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 283
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.465824000013527
+        },
+        "total_time_s": 10.465824000013527,
+        "pre_time_s": 0.8902628997748252,
+        "inf_time_s": 4.291968900535721,
+        "post_time_s": 2.3582609997538384,
+        "fps": 27.040393570504744,
+        "ms_per_frame": 36.981710247397615,
+        "detector_calls": 283,
+        "total_frames": 283,
+        "detector_call_latency": {
+          "mean_ms": 26.644850883619736,
+          "median_ms": 23.533300001872703,
+          "p95_ms": 59.93732000060843,
+          "std_ms": 16.568826442324557,
+          "n": 283
+        },
+        "cpu_seconds": 12.484375,
+        "extra_peak_rss_mb": 358.88671875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.7124794721603394,
+        "tp": 283,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 283
+      }
+    },
+    "Sitting (5)": {
+      "video_name": "Sitting (5)",
+      "class_name": "Sitting",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Sitting\\Sitting (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.2001642000104766,
+          "2_single_pass_extraction_ffmpeg": 2.2410288999963086,
+          "3_dct_feature_map_build_numpy": 0.07563789997948334,
+          "4_mv_parse_numpy": 0.9352951999753714,
+          "5_ssd_detection_iframes": 0.10049660000368021,
+          "6_mv_box_propagation": 0.06223009998211637
+        },
+        "total_time_s": 5.6148528999474365,
+        "pre_time_s": 5.45212619996164,
+        "inf_time_s": 0.10049660000368021,
+        "post_time_s": 0.06223009998211637,
+        "fps": 51.82682524108943,
+        "ms_per_frame": 19.295027147585692,
+        "detector_calls": 3,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 33.49676666160425,
+          "median_ms": 36.66209999937564,
+          "p95_ms": 39.12890997598879,
+          "std_ms": 6.511432217001617,
+          "n": 3
+        },
+        "cpu_seconds": 7.296875,
+        "extra_peak_rss_mb": 682.8984375,
+        "action_result": {
+          "predicted_class_id": 2,
+          "predicted_class_name": "sitting",
+          "confidence": 0.916664719581604,
+          "all_probabilities": {
+            "clapping": 0.015351108275353909,
+            "meet and split": 0.015183037146925926,
+            "sitting": 0.916664719581604,
+            "standing still": 0.015292054042220116,
+            "walking": 0.011918074451386929,
+            "walking while reading book": 0.0089933006092906,
+            "walking while using phone": 0.016597576439380646
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "sitting",
+              "probability": 0.916664719581604
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.016597576439380646
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.015351108275353909
+            },
+            {
+              "rank": 4,
+              "class_name": "standing still",
+              "probability": 0.015292054042220116
+            },
+            {
+              "rank": 5,
+              "class_name": "meet and split",
+              "probability": 0.015183037146925926
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 291
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.70362099999329
+        },
+        "total_time_s": 9.70362099999329,
+        "pre_time_s": 0.8064207004499622,
+        "inf_time_s": 3.9075209991133306,
+        "post_time_s": 1.906225100188749,
+        "fps": 29.98880520995216,
+        "ms_per_frame": 33.345776632279346,
+        "detector_calls": 291,
+        "total_frames": 291,
+        "detector_call_latency": {
+          "mean_ms": 22.74971408849499,
+          "median_ms": 22.505200002342463,
+          "p95_ms": 39.34994999144692,
+          "std_ms": 11.421498672165391,
+          "n": 291
+        },
+        "cpu_seconds": 13.734375,
+        "extra_peak_rss_mb": 354.421875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "mean_iou": 0.7476852536201477,
+        "tp": 291,
+        "fp": 0,
+        "fn": 0,
+        "gt_frames": 291
+      }
+    },
+    "Standing Still (3)": {
+      "video_name": "Standing Still (3)",
+      "class_name": "Standing Still",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Standing Still\\Standing Still (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.554981499997666,
+          "2_single_pass_extraction_ffmpeg": 2.579344600002514,
+          "3_dct_feature_map_build_numpy": 0.08896730002015829,
+          "4_mv_parse_numpy": 1.020425399998203,
+          "5_ssd_detection_iframes": 0.09071269998094067,
+          "6_mv_box_propagation": 0.07003740000072867
+        },
+        "total_time_s": 6.404468900000211,
+        "pre_time_s": 6.2437188000185415,
+        "inf_time_s": 0.09071269998094067,
+        "post_time_s": 0.07003740000072867,
+        "fps": 48.09141941496349,
+        "ms_per_frame": 20.793730194805878,
+        "detector_calls": 3,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 30.235499997312825,
+          "median_ms": 27.99179998692125,
+          "p95_ms": 36.86444999475498,
+          "std_ms": 5.533777607601554,
+          "n": 3
+        },
+        "cpu_seconds": 7.859375,
+        "extra_peak_rss_mb": 706.5625,
+        "action_result": {
+          "predicted_class_id": 3,
+          "predicted_class_name": "standing still",
+          "confidence": 0.8788668513298035,
+          "all_probabilities": {
+            "clapping": 0.02866296097636223,
+            "meet and split": 0.019194187596440315,
+            "sitting": 0.02024887129664421,
+            "standing still": 0.8788668513298035,
+            "walking": 0.01608295366168022,
+            "walking while reading book": 0.01331667136400938,
+            "walking while using phone": 0.02362733893096447
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "standing still",
+              "probability": 0.8788668513298035
+            },
+            {
+              "rank": 2,
+              "class_name": "clapping",
+              "probability": 0.02866296097636223
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.02362733893096447
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.02024887129664421
+            },
+            {
+              "rank": 5,
+              "class_name": "meet and split",
+              "probability": 0.019194187596440315
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 308
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.91346139999223
+        },
+        "total_time_s": 9.91346139999223,
+        "pre_time_s": 0.6930460001458414,
+        "inf_time_s": 3.5791146999108605,
+        "post_time_s": 2.5938588998105843,
+        "fps": 31.068865613401332,
+        "ms_per_frame": 32.18656298698776,
+        "detector_calls": 308,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 22.29227142814054,
+          "median_ms": 8.763450008700602,
+          "p95_ms": 59.6019200005685,
+          "std_ms": 18.97986120664808,
+          "n": 308
+        },
+        "cpu_seconds": 12.9375,
+        "extra_peak_rss_mb": 355.39453125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 0.49838187702265374,
+        "f1": 0.6652267818574514,
+        "mean_iou": 0.7186297178268433,
+        "tp": 308,
+        "fp": 0,
+        "fn": 310,
+        "gt_frames": 308
+      }
+    },
+    "Standing Still (4)": {
+      "video_name": "Standing Still (4)",
+      "class_name": "Standing Still",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Standing Still\\Standing Still (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.604079399985494,
+          "2_single_pass_extraction_ffmpeg": 2.635390000010375,
+          "3_dct_feature_map_build_numpy": 0.07609340001363307,
+          "4_mv_parse_numpy": 1.0972664000000805,
+          "5_ssd_detection_iframes": 0.0878169999923557,
+          "6_mv_box_propagation": 0.0654631000070367
+        },
+        "total_time_s": 6.566109300008975,
+        "pre_time_s": 6.412829200009583,
+        "inf_time_s": 0.0878169999923557,
+        "post_time_s": 0.0654631000070367,
+        "fps": 46.907534725256404,
+        "ms_per_frame": 21.318536688340828,
+        "detector_calls": 3,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 29.270599993954722,
+          "median_ms": 25.94749999116175,
+          "p95_ms": 35.85892999835778,
+          "std_ms": 5.454027995882742,
+          "n": 3
+        },
+        "cpu_seconds": 7.65625,
+        "extra_peak_rss_mb": 707.81640625,
+        "action_result": {
+          "predicted_class_id": 3,
+          "predicted_class_name": "standing still",
+          "confidence": 0.9041470885276794,
+          "all_probabilities": {
+            "clapping": 0.016350500285625458,
+            "meet and split": 0.018272006884217262,
+            "sitting": 0.015742262825369835,
+            "standing still": 0.9041470885276794,
+            "walking": 0.014270507730543613,
+            "walking while reading book": 0.011640021577477455,
+            "walking while using phone": 0.01957758516073227
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "standing still",
+              "probability": 0.9041470885276794
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.01957758516073227
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.018272006884217262
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.016350500285625458
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.015742262825369835
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 308
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.980617199995322
+        },
+        "total_time_s": 9.980617199995322,
+        "pre_time_s": 0.7870666998787783,
+        "inf_time_s": 3.7594319002819248,
+        "post_time_s": 2.243436399992788,
+        "fps": 30.85981496215929,
+        "ms_per_frame": 32.40460129868611,
+        "detector_calls": 308,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 22.045243506991856,
+          "median_ms": 20.240650002961047,
+          "p95_ms": 48.85125500004502,
+          "std_ms": 15.340490060363452,
+          "n": 308
+        },
+        "cpu_seconds": 13.421875,
+        "extra_peak_rss_mb": 360.59375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 0.6350515463917525,
+        "f1": 0.7767969735182849,
+        "mean_iou": 0.7855556607246399,
+        "tp": 308,
+        "fp": 0,
+        "fn": 177,
+        "gt_frames": 308
+      }
+    },
+    "Standing Still (5)": {
+      "video_name": "Standing Still (5)",
+      "class_name": "Standing Still",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Standing Still\\Standing Still (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.6632230000104755,
+          "2_single_pass_extraction_ffmpeg": 2.767711299995426,
+          "3_dct_feature_map_build_numpy": 0.0878177999984473,
+          "4_mv_parse_numpy": 1.0472590000135824,
+          "5_ssd_detection_iframes": 0.09176350000780076,
+          "6_mv_box_propagation": 0.04405580001184717
+        },
+        "total_time_s": 6.701830400037579,
+        "pre_time_s": 6.566011100017931,
+        "inf_time_s": 0.09176350000780076,
+        "post_time_s": 0.04405580001184717,
+        "fps": 45.95759391319019,
+        "ms_per_frame": 21.759189610511623,
+        "detector_calls": 3,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 30.585700005758554,
+          "median_ms": 24.68630002113059,
+          "p95_ms": 41.02040000434499,
+          "std_ms": 8.663730152228423,
+          "n": 3
+        },
+        "cpu_seconds": 8.640625,
+        "extra_peak_rss_mb": 709.75,
+        "action_result": {
+          "predicted_class_id": 3,
+          "predicted_class_name": "standing still",
+          "confidence": 0.8619310259819031,
+          "all_probabilities": {
+            "clapping": 0.018643302842974663,
+            "meet and split": 0.042269621044397354,
+            "sitting": 0.02099074423313141,
+            "standing still": 0.8619310259819031,
+            "walking": 0.01733645610511303,
+            "walking while reading book": 0.01459135115146637,
+            "walking while using phone": 0.02423752285540104
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "standing still",
+              "probability": 0.8619310259819031
+            },
+            {
+              "rank": 2,
+              "class_name": "meet and split",
+              "probability": 0.042269621044397354
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.02423752285540104
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.02099074423313141
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.018643302842974663
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 308
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.661889000009978
+        },
+        "total_time_s": 8.661889000009978,
+        "pre_time_s": 0.6106550998520106,
+        "inf_time_s": 3.358987900457578,
+        "post_time_s": 1.6183287996973377,
+        "fps": 35.558063604791656,
+        "ms_per_frame": 28.12301623379863,
+        "detector_calls": 308,
+        "total_frames": 308,
+        "detector_call_latency": {
+          "mean_ms": 18.14276558443807,
+          "median_ms": 7.718599998042919,
+          "p95_ms": 42.121830001997296,
+          "std_ms": 13.363969912732635,
+          "n": 308
+        },
+        "cpu_seconds": 12.625,
+        "extra_peak_rss_mb": 362.17578125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 0.3813559322033898,
+        "f1": 0.5521472392638037,
+        "mean_iou": 0.7042359113693237,
+        "tp": 180,
+        "fp": 0,
+        "fn": 292,
+        "gt_frames": 308
+      }
+    },
+    "Walking (3)": {
+      "video_name": "Walking (3)",
+      "class_name": "Walking",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1556180999905337,
+          "2_single_pass_extraction_ffmpeg": 1.3007908000145108,
+          "3_dct_feature_map_build_numpy": 0.06746259998180903,
+          "4_mv_parse_numpy": 1.0204772999859415,
+          "5_ssd_detection_iframes": 0.061947899986989796,
+          "6_mv_box_propagation": 0.05001060001086444
+        },
+        "total_time_s": 3.656307299970649,
+        "pre_time_s": 3.544348799972795,
+        "inf_time_s": 0.061947899986989796,
+        "post_time_s": 0.05001060001086444,
+        "fps": 81.50299620668979,
+        "ms_per_frame": 12.269487583794126,
+        "detector_calls": 2,
+        "total_frames": 298,
+        "detector_call_latency": {
+          "mean_ms": 30.97140000318177,
+          "median_ms": 30.97140000318177,
+          "p95_ms": 35.35296002228279,
+          "std_ms": 4.868400021223351,
+          "n": 2
+        },
+        "cpu_seconds": 4.484375,
+        "extra_peak_rss_mb": 706.703125,
+        "action_result": {
+          "predicted_class_id": 4,
+          "predicted_class_name": "walking",
+          "confidence": 0.8624311089515686,
+          "all_probabilities": {
+            "clapping": 0.0193347055464983,
+            "meet and split": 0.014897988177835941,
+            "sitting": 0.014772642403841019,
+            "standing still": 0.013588892295956612,
+            "walking": 0.8624311089515686,
+            "walking while reading book": 0.00963435135781765,
+            "walking while using phone": 0.06534023582935333
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking",
+              "probability": 0.8624311089515686
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.06534023582935333
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.0193347055464983
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.014897988177835941
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.014772642403841019
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 298
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.35482680000132
+        },
+        "total_time_s": 9.35482680000132,
+        "pre_time_s": 0.7212955000577495,
+        "inf_time_s": 3.886575000185985,
+        "post_time_s": 1.7674143997719511,
+        "fps": 31.855212968770086,
+        "ms_per_frame": 31.392036241615163,
+        "detector_calls": 298,
+        "total_frames": 298,
+        "detector_call_latency": {
+          "mean_ms": 21.393573489985524,
+          "median_ms": 22.036549999029376,
+          "p95_ms": 44.44941500696584,
+          "std_ms": 13.506523833581962,
+          "n": 298
+        },
+        "cpu_seconds": 11.734375,
+        "extra_peak_rss_mb": 344.55859375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.030821917808219176,
+          "recall": 0.030821917808219176,
+          "f1": 0.030821917808219176,
+          "mean_iou": 0.531113862991333,
+          "tp": 9,
+          "fp": 283,
+          "fn": 283,
+          "gt_frames": 292
+        },
+        "yolo_full": {
+          "precision": 0.06506849315068493,
+          "recall": 0.06506849315068493,
+          "f1": 0.06506849315068493,
+          "mean_iou": 0.5451045501831289,
+          "tp": 19,
+          "fp": 273,
+          "fn": 273,
+          "gt_frames": 292
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Walking.txt"
+      }
+    },
+    "Walking (4)": {
+      "video_name": "Walking (4)",
+      "class_name": "Walking",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.168964499986032,
+          "2_single_pass_extraction_ffmpeg": 1.2486464999965392,
+          "3_dct_feature_map_build_numpy": 0.06598879999364726,
+          "4_mv_parse_numpy": 1.0433332999818958,
+          "5_ssd_detection_iframes": 0.05680769999162294,
+          "6_mv_box_propagation": 0.07037359999958426
+        },
+        "total_time_s": 3.6541143999493215,
+        "pre_time_s": 3.5269330999581143,
+        "inf_time_s": 0.05680769999162294,
+        "post_time_s": 0.07037359999958426,
+        "fps": 82.92022822388984,
+        "ms_per_frame": 12.059783498182579,
+        "detector_calls": 2,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 28.4014499920886,
+          "median_ms": 28.4014499920886,
+          "p95_ms": 28.603275009663776,
+          "std_ms": 0.22425001952797174,
+          "n": 2
+        },
+        "cpu_seconds": 4.0625,
+        "extra_peak_rss_mb": 700.16796875,
+        "action_result": {
+          "predicted_class_id": 4,
+          "predicted_class_name": "walking",
+          "confidence": 0.8396859169006348,
+          "all_probabilities": {
+            "clapping": 0.02174016647040844,
+            "meet and split": 0.015163157135248184,
+            "sitting": 0.014927554875612259,
+            "standing still": 0.013356702402234077,
+            "walking": 0.8396859169006348,
+            "walking while reading book": 0.009776566177606583,
+            "walking while using phone": 0.08534995466470718
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking",
+              "probability": 0.8396859169006348
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.08534995466470718
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.02174016647040844
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.015163157135248184
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.014927554875612259
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 303
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.467063699994469
+        },
+        "total_time_s": 8.467063699994469,
+        "pre_time_s": 0.6723484002286568,
+        "inf_time_s": 3.176198299130192,
+        "post_time_s": 1.5017961004923563,
+        "fps": 35.78572344981861,
+        "ms_per_frame": 27.94410462044379,
+        "detector_calls": 303,
+        "total_frames": 303,
+        "detector_call_latency": {
+          "mean_ms": 17.6578970292119,
+          "median_ms": 8.70299999951385,
+          "p95_ms": 37.55927000311203,
+          "std_ms": 12.003974232161559,
+          "n": 303
+        },
+        "cpu_seconds": 10.96875,
+        "extra_peak_rss_mb": 344.7890625,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_iou": 0.0,
+          "tp": 0,
+          "fp": 292,
+          "fn": 292,
+          "gt_frames": 292
+        },
+        "yolo_full": {
+          "precision": 0.08813559322033898,
+          "recall": 0.08904109589041095,
+          "f1": 0.08858603066439522,
+          "mean_iou": 0.5496370341184502,
+          "tp": 26,
+          "fp": 269,
+          "fn": 266,
+          "gt_frames": 292
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Walking.txt"
+      }
+    },
+    "Walking (5)": {
+      "video_name": "Walking (5)",
+      "class_name": "Walking",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.1125974000024144,
+          "2_single_pass_extraction_ffmpeg": 1.1970294999773614,
+          "3_dct_feature_map_build_numpy": 0.064615799987223,
+          "4_mv_parse_numpy": 0.9490285999781918,
+          "5_ssd_detection_iframes": 0.06327820001752116,
+          "6_mv_box_propagation": 0.059392200026195496
+        },
+        "total_time_s": 3.445941699988907,
+        "pre_time_s": 3.3232712999451905,
+        "inf_time_s": 0.06327820001752116,
+        "post_time_s": 0.059392200026195496,
+        "fps": 81.25500207995432,
+        "ms_per_frame": 12.306934642817525,
+        "detector_calls": 2,
+        "total_frames": 280,
+        "detector_call_latency": {
+          "mean_ms": 31.635999999707565,
+          "median_ms": 31.635999999707565,
+          "p95_ms": 38.781820007716306,
+          "std_ms": 7.939800008898601,
+          "n": 2
+        },
+        "cpu_seconds": 3.875,
+        "extra_peak_rss_mb": 647.58203125,
+        "action_result": {
+          "predicted_class_id": 4,
+          "predicted_class_name": "walking",
+          "confidence": 0.7182971835136414,
+          "all_probabilities": {
+            "clapping": 0.02058347314596176,
+            "meet and split": 0.04729991406202316,
+            "sitting": 0.016554346308112144,
+            "standing still": 0.015368247404694557,
+            "walking": 0.7182971835136414,
+            "walking while reading book": 0.014505702070891857,
+            "walking while using phone": 0.16739116609096527
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking",
+              "probability": 0.7182971835136414
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.16739116609096527
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.04729991406202316
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.02058347314596176
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.016554346308112144
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 280
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 8.309060400002636
+        },
+        "total_time_s": 8.309060400002636,
+        "pre_time_s": 0.6705387999827508,
+        "inf_time_s": 3.2699743001139723,
+        "post_time_s": 1.5686516999267042,
+        "fps": 33.69815436651672,
+        "ms_per_frame": 29.675215714295128,
+        "detector_calls": 280,
+        "total_frames": 280,
+        "detector_call_latency": {
+          "mean_ms": 19.67558857151224,
+          "median_ms": 19.839050000882708,
+          "p95_ms": 40.3539950173581,
+          "std_ms": 12.507606384565609,
+          "n": 280
+        },
+        "cpu_seconds": 10.609375,
+        "extra_peak_rss_mb": 351.05859375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "gt_evaluation": {
+        "ours": {
+          "precision": 0.039285714285714285,
+          "recall": 0.03767123287671233,
+          "f1": 0.038461538461538464,
+          "mean_iou": 0.5552569031715393,
+          "tp": 11,
+          "fp": 269,
+          "fn": 281,
+          "gt_frames": 292
+        },
+        "yolo_full": {
+          "precision": 0.1056338028169014,
+          "recall": 0.10273972602739725,
+          "f1": 0.10416666666666666,
+          "mean_iou": 0.5456638406748068,
+          "tp": 30,
+          "fp": 254,
+          "fn": 262,
+          "gt_frames": 292
+        },
+        "gt_file": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\data\\annotations\\Walking.txt"
+      }
+    },
+    "Walking While Reading Book (3)": {
+      "video_name": "Walking While Reading Book (3)",
+      "class_name": "Walking While Reading Book",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Reading Book\\Walking While Reading Book (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.9653518999984954,
+          "2_single_pass_extraction_ffmpeg": 0.9722417999873869,
+          "3_dct_feature_map_build_numpy": 0.07994870000402443,
+          "4_mv_parse_numpy": 1.0401718999783043,
+          "5_ssd_detection_iframes": 0.08780420001130551,
+          "6_mv_box_propagation": 0.06600109999999404
+        },
+        "total_time_s": 3.2115195999795105,
+        "pre_time_s": 3.057714299968211,
+        "inf_time_s": 0.08780420001130551,
+        "post_time_s": 0.06600109999999404,
+        "fps": 97.15027116820042,
+        "ms_per_frame": 10.29333205121638,
+        "detector_calls": 3,
+        "total_frames": 312,
+        "detector_call_latency": {
+          "mean_ms": 29.266333323903382,
+          "median_ms": 26.179599983152002,
+          "p95_ms": 35.663259981083684,
+          "std_ms": 5.29415622292267,
+          "n": 3
+        },
+        "cpu_seconds": 4.390625,
+        "extra_peak_rss_mb": 731.9453125,
+        "action_result": {
+          "predicted_class_id": 5,
+          "predicted_class_name": "walking while reading book",
+          "confidence": 0.8343719244003296,
+          "all_probabilities": {
+            "clapping": 0.021231768652796745,
+            "meet and split": 0.023227613419294357,
+            "sitting": 0.020596683025360107,
+            "standing still": 0.01861780323088169,
+            "walking": 0.05511276796460152,
+            "walking while reading book": 0.8343719244003296,
+            "walking while using phone": 0.02684144489467144
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while reading book",
+              "probability": 0.8343719244003296
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.05511276796460152
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.02684144489467144
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.023227613419294357
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.021231768652796745
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 312
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.222544099990046
+        },
+        "total_time_s": 9.222544099990046,
+        "pre_time_s": 0.75243839979521,
+        "inf_time_s": 3.553391600755276,
+        "post_time_s": 1.7814036994241178,
+        "fps": 33.8301445476782,
+        "ms_per_frame": 29.559436217916815,
+        "detector_calls": 312,
+        "total_frames": 312,
+        "detector_call_latency": {
+          "mean_ms": 19.510364422995526,
+          "median_ms": 19.467449994408526,
+          "p95_ms": 44.24321500118822,
+          "std_ms": 14.282344366723663,
+          "n": 312
+        },
+        "cpu_seconds": 10.296875,
+        "extra_peak_rss_mb": 344.69921875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.717948717948718,
+        "recall": 0.6455331412103746,
+        "f1": 0.6798179059180578,
+        "mean_iou": 0.6005681753158569,
+        "tp": 224,
+        "fp": 88,
+        "fn": 123,
+        "gt_frames": 312
+      }
+    },
+    "Walking While Reading Book (4)": {
+      "video_name": "Walking While Reading Book (4)",
+      "class_name": "Walking While Reading Book",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Reading Book\\Walking While Reading Book (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 1.0112239999871235,
+          "2_single_pass_extraction_ffmpeg": 1.047859399986919,
+          "3_dct_feature_map_build_numpy": 0.06797180001740344,
+          "4_mv_parse_numpy": 0.9355237999989185,
+          "5_ssd_detection_iframes": 0.05263819999527186,
+          "6_mv_box_propagation": 0.05881820002105087
+        },
+        "total_time_s": 3.1740354000066873,
+        "pre_time_s": 3.0625789999903645,
+        "inf_time_s": 0.05263819999527186,
+        "post_time_s": 0.05881820002105087,
+        "fps": 86.3254392182969,
+        "ms_per_frame": 11.584070802944114,
+        "detector_calls": 2,
+        "total_frames": 274,
+        "detector_call_latency": {
+          "mean_ms": 26.31650000694208,
+          "median_ms": 26.31650000694208,
+          "p95_ms": 28.18454000807833,
+          "std_ms": 2.075600001262501,
+          "n": 2
+        },
+        "cpu_seconds": 3.4375,
+        "extra_peak_rss_mb": 627.4296875,
+        "action_result": {
+          "predicted_class_id": 5,
+          "predicted_class_name": "walking while reading book",
+          "confidence": 0.7531354427337646,
+          "all_probabilities": {
+            "clapping": 0.031187480315566063,
+            "meet and split": 0.037168633192777634,
+            "sitting": 0.029691850766539574,
+            "standing still": 0.028766069561243057,
+            "walking": 0.06810010969638824,
+            "walking while reading book": 0.7531354427337646,
+            "walking while using phone": 0.051950495690107346
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while reading book",
+              "probability": 0.7531354427337646
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.06810010969638824
+            },
+            {
+              "rank": 3,
+              "class_name": "walking while using phone",
+              "probability": 0.051950495690107346
+            },
+            {
+              "rank": 4,
+              "class_name": "meet and split",
+              "probability": 0.037168633192777634
+            },
+            {
+              "rank": 5,
+              "class_name": "clapping",
+              "probability": 0.031187480315566063
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 274
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.861290000000736
+        },
+        "total_time_s": 9.861290000000736,
+        "pre_time_s": 0.6701126001717057,
+        "inf_time_s": 3.995749999565305,
+        "post_time_s": 2.2625836002116557,
+        "fps": 27.785411442111485,
+        "ms_per_frame": 35.990109489053786,
+        "detector_calls": 274,
+        "total_frames": 274,
+        "detector_call_latency": {
+          "mean_ms": 25.286299999812652,
+          "median_ms": 23.330350013566203,
+          "p95_ms": 60.321080003632225,
+          "std_ms": 17.32476795777815,
+          "n": 274
+        },
+        "cpu_seconds": 10.15625,
+        "extra_peak_rss_mb": 349.73828125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.708029197080292,
+        "recall": 0.6298701298701299,
+        "f1": 0.6666666666666666,
+        "mean_iou": 0.7052323818206787,
+        "tp": 194,
+        "fp": 80,
+        "fn": 114,
+        "gt_frames": 274
+      }
+    },
+    "Walking While Reading Book (5)": {
+      "video_name": "Walking While Reading Book (5)",
+      "class_name": "Walking While Reading Book",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Reading Book\\Walking While Reading Book (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 0.9178888000024017,
+          "2_single_pass_extraction_ffmpeg": 0.901722200011136,
+          "3_dct_feature_map_build_numpy": 0.06910150000476278,
+          "4_mv_parse_numpy": 1.056624400021974,
+          "5_ssd_detection_iframes": 0.0662255999923218,
+          "6_mv_box_propagation": 0.06641379999928176
+        },
+        "total_time_s": 3.077976300031878,
+        "pre_time_s": 2.9453369000402745,
+        "inf_time_s": 0.0662255999923218,
+        "post_time_s": 0.06641379999928176,
+        "fps": 91.94352795928579,
+        "ms_per_frame": 10.876241342868827,
+        "detector_calls": 2,
+        "total_frames": 283,
+        "detector_call_latency": {
+          "mean_ms": 33.110050004324876,
+          "median_ms": 33.110050004324876,
+          "p95_ms": 41.20496499672299,
+          "std_ms": 8.994349991553463,
+          "n": 2
+        },
+        "cpu_seconds": 3.609375,
+        "extra_peak_rss_mb": 636.1171875,
+        "action_result": {
+          "predicted_class_id": 5,
+          "predicted_class_name": "walking while reading book",
+          "confidence": 0.8659630417823792,
+          "all_probabilities": {
+            "clapping": 0.021152611821889877,
+            "meet and split": 0.024605199694633484,
+            "sitting": 0.02187942899763584,
+            "standing still": 0.018836257979273796,
+            "walking": 0.021700115874409676,
+            "walking while reading book": 0.8659630417823792,
+            "walking while using phone": 0.025863412767648697
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while reading book",
+              "probability": 0.8659630417823792
+            },
+            {
+              "rank": 2,
+              "class_name": "walking while using phone",
+              "probability": 0.025863412767648697
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.024605199694633484
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.02187942899763584
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.021700115874409676
+            }
+          ]
+        },
+        "_info": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30.0,
+          "num_frames": 283
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 7.441332699992927
+        },
+        "total_time_s": 7.441332699992927,
+        "pre_time_s": 0.5562153999926522,
+        "inf_time_s": 2.823082199669443,
+        "post_time_s": 1.2556000001204666,
+        "fps": 38.030822086515364,
+        "ms_per_frame": 26.294461837430838,
+        "detector_calls": 283,
+        "total_frames": 283,
+        "detector_call_latency": {
+          "mean_ms": 16.377730034567357,
+          "median_ms": 10.915799997746944,
+          "p95_ms": 38.17232999426777,
+          "std_ms": 11.64179715257835,
+          "n": 283
+        },
+        "cpu_seconds": 8.953125,
+        "extra_peak_rss_mb": 350.30859375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 1.0,
+        "recall": 0.9758620689655172,
+        "f1": 0.987783595113438,
+        "mean_iou": 0.6541858911514282,
+        "tp": 283,
+        "fp": 0,
+        "fn": 7,
+        "gt_frames": 283
+      }
+    },
+    "Walking While Using Phone (3)": {
+      "video_name": "Walking While Using Phone (3)",
+      "class_name": "Walking While Using Phone",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Using Phone\\Walking While Using Phone (3).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.6771369999914896,
+          "2_single_pass_extraction_ffmpeg": 2.7654193000053056,
+          "3_dct_feature_map_build_numpy": 0.09514779999153689,
+          "4_mv_parse_numpy": 1.0682763000077102,
+          "5_ssd_detection_iframes": 0.10743090001051314,
+          "6_mv_box_propagation": 0.07270180000341497
+        },
+        "total_time_s": 6.78611310000997,
+        "pre_time_s": 6.605980399996042,
+        "inf_time_s": 0.10743090001051314,
+        "post_time_s": 0.07270180000341497,
+        "fps": 46.56568426475764,
+        "ms_per_frame": 21.475041455727755,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 35.80799999569232,
+          "median_ms": 38.9976000005845,
+          "p95_ms": 39.31529998371843,
+          "std_ms": 4.762565120202544,
+          "n": 3
+        },
+        "cpu_seconds": 7.015625,
+        "extra_peak_rss_mb": 724.546875,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.9336065053939819,
+          "all_probabilities": {
+            "clapping": 0.011873085983097553,
+            "meet and split": 0.013102277182042599,
+            "sitting": 0.01126544363796711,
+            "standing still": 0.010110841132700443,
+            "walking": 0.0117217181250453,
+            "walking while reading book": 0.008320052176713943,
+            "walking while using phone": 0.9336065053939819
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.9336065053939819
+            },
+            {
+              "rank": 2,
+              "class_name": "meet and split",
+              "probability": 0.013102277182042599
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.011873085983097553
+            },
+            {
+              "rank": 4,
+              "class_name": "walking",
+              "probability": 0.0117217181250453
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.01126544363796711
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 9.536746400000993
+        },
+        "total_time_s": 9.536746400000993,
+        "pre_time_s": 0.753671299898997,
+        "inf_time_s": 3.6033998998755123,
+        "post_time_s": 1.9820737000845838,
+        "fps": 33.1349903568755,
+        "ms_per_frame": 30.179577215193014,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 20.06058512613637,
+          "median_ms": 11.833900003693998,
+          "p95_ms": 55.32645000494085,
+          "std_ms": 15.716802157656039,
+          "n": 316
+        },
+        "cpu_seconds": 12.1875,
+        "extra_peak_rss_mb": 353.18359375,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.5759493670886076,
+        "recall": 0.5669781931464174,
+        "f1": 0.5714285714285714,
+        "mean_iou": 0.6628698110580444,
+        "tp": 182,
+        "fp": 134,
+        "fn": 139,
+        "gt_frames": 316
+      }
+    },
+    "Walking While Using Phone (4)": {
+      "video_name": "Walking While Using Phone (4)",
+      "class_name": "Walking While Using Phone",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Using Phone\\Walking While Using Phone (4).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 3.0271794000000227,
+          "2_single_pass_extraction_ffmpeg": 3.0744523000030313,
+          "3_dct_feature_map_build_numpy": 0.09325780000654049,
+          "4_mv_parse_numpy": 1.1142335000040475,
+          "5_ssd_detection_iframes": 0.10815039998851717,
+          "6_mv_box_propagation": 0.07417639999766834
+        },
+        "total_time_s": 7.4914497999998275,
+        "pre_time_s": 7.309123000013642,
+        "inf_time_s": 0.10815039998851717,
+        "post_time_s": 0.07417639999766834,
+        "fps": 42.18142127842962,
+        "ms_per_frame": 23.70711962025262,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 36.04796666574354,
+          "median_ms": 38.71880000224337,
+          "p95_ms": 40.31782999809366,
+          "std_ms": 5.085438279219484,
+          "n": 3
+        },
+        "cpu_seconds": 8.34375,
+        "extra_peak_rss_mb": 729.37890625,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.9426904320716858,
+          "all_probabilities": {
+            "clapping": 0.010463218204677105,
+            "meet and split": 0.011875458993017673,
+            "sitting": 0.010412127710878849,
+            "standing still": 0.008595673367381096,
+            "walking": 0.009481745772063732,
+            "walking while reading book": 0.006481447722762823,
+            "walking while using phone": 0.9426904320716858
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.9426904320716858
+            },
+            {
+              "rank": 2,
+              "class_name": "meet and split",
+              "probability": 0.011875458993017673
+            },
+            {
+              "rank": 3,
+              "class_name": "clapping",
+              "probability": 0.010463218204677105
+            },
+            {
+              "rank": 4,
+              "class_name": "sitting",
+              "probability": 0.010412127710878849
+            },
+            {
+              "rank": 5,
+              "class_name": "walking",
+              "probability": 0.009481745772063732
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 12.762560100003611
+        },
+        "total_time_s": 12.762560100003611,
+        "pre_time_s": 0.8632672994863242,
+        "inf_time_s": 5.132874200033257,
+        "post_time_s": 3.3216088004701305,
+        "fps": 24.75992258010292,
+        "ms_per_frame": 40.38784841773295,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 29.486551582245923,
+          "median_ms": 26.157250002142973,
+          "p95_ms": 63.590824996936135,
+          "std_ms": 18.442499088305762,
+          "n": 316
+        },
+        "cpu_seconds": 14.40625,
+        "extra_peak_rss_mb": 361.33203125,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.5221518987341772,
+        "recall": 0.4376657824933687,
+        "f1": 0.4761904761904762,
+        "mean_iou": 0.7134340405464172,
+        "tp": 165,
+        "fp": 151,
+        "fn": 212,
+        "gt_frames": 316
+      }
+    },
+    "Walking While Using Phone (5)": {
+      "video_name": "Walking While Using Phone (5)",
+      "class_name": "Walking While Using Phone",
+      "video_path": "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking While Using Phone\\Walking While Using Phone (5).mp4",
+      "ours": {
+        "pipeline": "OURS_HAR",
+        "device": "cpu",
+        "stages_s": {
+          "1_ffprobe_frame_types": 2.7531742000137456,
+          "2_single_pass_extraction_ffmpeg": 2.790305000002263,
+          "3_dct_feature_map_build_numpy": 0.0866626999923028,
+          "4_mv_parse_numpy": 1.052000700001372,
+          "5_ssd_detection_iframes": 0.0885837999812793,
+          "6_mv_box_propagation": 0.0680129999818746
+        },
+        "total_time_s": 6.838739399972837,
+        "pre_time_s": 6.6821426000096835,
+        "inf_time_s": 0.0885837999812793,
+        "post_time_s": 0.0680129999818746,
+        "fps": 46.20734634240561,
+        "ms_per_frame": 21.641580379660876,
+        "detector_calls": 3,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 29.525766682733472,
+          "median_ms": 28.3488999994006,
+          "p95_ms": 35.778670021682046,
+          "std_ms": 5.364007294900033,
+          "n": 3
+        },
+        "cpu_seconds": 7.734375,
+        "extra_peak_rss_mb": 744.17578125,
+        "action_result": {
+          "predicted_class_id": 6,
+          "predicted_class_name": "walking while using phone",
+          "confidence": 0.9145210385322571,
+          "all_probabilities": {
+            "clapping": 0.013454125262796879,
+            "meet and split": 0.01538749411702156,
+            "sitting": 0.012647890485823154,
+            "standing still": 0.011536536738276482,
+            "walking": 0.0228261798620224,
+            "walking while reading book": 0.009626884944736958,
+            "walking while using phone": 0.9145210385322571
+          },
+          "top_5": [
+            {
+              "rank": 1,
+              "class_name": "walking while using phone",
+              "probability": 0.9145210385322571
+            },
+            {
+              "rank": 2,
+              "class_name": "walking",
+              "probability": 0.0228261798620224
+            },
+            {
+              "rank": 3,
+              "class_name": "meet and split",
+              "probability": 0.01538749411702156
+            },
+            {
+              "rank": 4,
+              "class_name": "clapping",
+              "probability": 0.013454125262796879
+            },
+            {
+              "rank": 5,
+              "class_name": "sitting",
+              "probability": 0.012647890485823154
+            }
+          ]
+        },
+        "_info": {
+          "width": 1080,
+          "height": 1920,
+          "fps": 30.0,
+          "num_frames": 316
+        }
+      },
+      "yolo_full": {
+        "pipeline": "YOLOv8_FULL",
+        "device": "cuda",
+        "stages_s": {
+          "1_rgb_decode_and_yolo": 10.365671300009126
+        },
+        "total_time_s": 10.365671300009126,
+        "pre_time_s": 0.7742165999370627,
+        "inf_time_s": 4.225055999821052,
+        "post_time_s": 2.2742724000127055,
+        "fps": 30.485242185879635,
+        "ms_per_frame": 32.802757278509894,
+        "detector_calls": 316,
+        "total_frames": 316,
+        "detector_call_latency": {
+          "mean_ms": 23.01754746762918,
+          "median_ms": 22.546699998201802,
+          "p95_ms": 48.995824996382,
+          "std_ms": 14.186280014104984,
+          "n": 316
+        },
+        "cpu_seconds": 13.71875,
+        "extra_peak_rss_mb": 353.6796875,
+        "gpu_peak_mem_mb": 415.25146484375
+      },
+      "yolo_agreement": {
+        "precision": 0.3512658227848101,
+        "recall": 0.27611940298507465,
+        "f1": 0.30919220055710306,
+        "mean_iou": 0.6364673972129822,
+        "tp": 111,
+        "fp": 205,
+        "fn": 291,
+        "gt_frames": 316
+      }
+    }
+  }
+}

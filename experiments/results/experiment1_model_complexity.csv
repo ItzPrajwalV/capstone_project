@@ -1,0 +1,4 @@
+Model,Framework,Input Shape,Params (M),GFLOPs / Inference,Weights Size (MB),Median Latency (ms),P95 Latency (ms),Device
+SSD300_H264 (Ours Detector),TensorFlow,300x300x3 DCT Energy Map,44.29,3.472,506.91,9.87,10.19,cpu
+TemporalCNN (Ours Action),PyTorch,20x224x224 Cropped MVs,90.52,5.228,1035.9,0.0,0.0,cuda
+YOLOv8n,PyTorch / Ultralytics,640x640x3 RGB Frame,3.16,8.744,6.25,4.43,7.35,cuda

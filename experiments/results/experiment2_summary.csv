@@ -1,0 +1,14 @@
+Metric,Our Compressed HAR Pipeline,YOLOv8-KEY (Keyframe + MV),YOLOv8-FULL (Every Frame)
+Total Continuous Frames,20931,20931,20931
+Video Duration (s),697.7 s,697.7 s,697.7 s
+Total Execution Time (s),292.45 s,197.90 s,1046.74 s
+Throughput (FPS),71.6 FPS,105.8 FPS,20.0 FPS
+Latency (ms / frame),13.97 ms,9.46 ms,50.01 ms
+Real-Time Factor,2.39x Real-Time,3.53x Real-Time,0.67x Real-Time
+Detector Calls,135,135,20931
+Total Detector GFLOPs,468.7 GFLOPs,1180.4 GFLOPs,183020.4 GFLOPs
+GFLOPs / Video Second,0.67,1.69,262.32
+Extra Peak RAM (MB),49537.1 MB,631.3 MB,379.7 MB
+GPU Peak VRAM (MB),0.0 MB (CPU Detector),2008.6 MB,2008.6 MB
+Action Recognition Accuracy (70 Segments),52.9 %,N/A (Object Detector),N/A (Object Detector)
+Mean Detection Agreement F1,0.228,1.000 (Reference),N/A

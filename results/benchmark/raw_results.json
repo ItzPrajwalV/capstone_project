@@ -1,13 +1,13 @@
 {
   "environment": {
-    "OS": "Windows 11",
-    "CPU": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
-    "CPU cores (logical)": 18,
-    "RAM (GB)": "15.4",
-    "GPU": "none",
+    "OS": "Windows 10",
+    "CPU": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "CPU cores (logical)": 32,
+    "RAM (GB)": "127.7",
+    "GPU": "NVIDIA RTX 4500 Ada Generation",
     "TensorFlow": "2.21.0 (SSD device: cpu)",
-    "PyTorch": "2.14.1+cpu",
-    "Python": "3.12.10"
+    "PyTorch": "2.6.0+cu124",
+    "Python": "3.11.0"
   },
   "complexity": [
     {
@@ -18,26 +18,33 @@
       "weights_mb": 506.9105339050293,
       "latency": {
         "cpu": {
-          "mean_ms": 15.62537100049667,
-          "median_ms": 14.712899981532246,
-          "p95_ms": 18.489749991567805,
-          "std_ms": 3.1649270205518802,
+          "mean_ms": 11.57840099913301,
+          "median_ms": 11.494299993501045,
+          "p95_ms": 13.607590000901837,
+          "std_ms": 1.1881580649024421,
           "n": 100
         }
       }
     },
     {
-      "model": "yolo11n",
+      "model": "yolov8n",
       "input": "640x640x3 RGB",
-      "params_m": 2.62408,
-      "gflops": 6.4810624,
-      "weights_mb": 5.353702545166016,
+      "params_m": 3.1572,
+      "gflops": 8.7439872,
+      "weights_mb": 6.246372222900391,
       "latency": {
         "cpu": {
-          "mean_ms": 45.01163400011137,
-          "median_ms": 44.04649999924004,
-          "p95_ms": 51.144749973900616,
-          "std_ms": 6.0704693395365945,
+          "mean_ms": 33.75006299989764,
+          "median_ms": 33.29280001344159,
+          "p95_ms": 37.000754999462515,
+          "std_ms": 1.5800381292245338,
+          "n": 100
+        },
+        "cuda": {
+          "mean_ms": 3.6668020006618463,
+          "median_ms": 3.5320500028319657,
+          "p95_ms": 4.279219992167782,
+          "std_ms": 0.2973381990823761,
           "n": 100
         }
       }
@@ -46,296 +53,359 @@
   "results": [
     {
       "stages_s": {
-        "1_ffprobe_frame_types": 1.6078514999244362,
-        "2_iframe_coeff_extraction_ffmpeg": 6.487927599926479,
-        "3_dct_feature_map_build": 5.166075599961914,
-        "4a_mv_extraction_ffmpeg": 1.5413064999738708,
-        "4b_ffprobe_p_frame_index": 1.6562720999354497,
-        "4c_mv_bin_parse_python": 2.5031791999936104,
-        "4d_mv_npy_write_python": 95.65186950005591,
-        "5_ssd_detection_iframes": 0.3468330999603495,
-        "6_mv_box_propagation": 9.497004799894057
+        "1_ffprobe_frame_types": 1.2839588000206277,
+        "2_iframe_coeff_extraction_ffmpeg": 4.155841400002828,
+        "3_dct_feature_map_build": 3.0135262999974657,
+        "4a_mv_extraction_ffmpeg": 1.3407210999866948,
+        "4b_ffprobe_p_frame_index": 1.6130161999899428,
+        "4c_mv_bin_parse_python": 1.7173130000010133,
+        "4d_mv_npy_write_python": 57.73744899997837,
+        "5_ssd_detection_iframes": 0.20983300000079907,
+        "6_mv_box_propagation": 7.117575900017982
       },
-      "total_s": 124.45831989962608,
-      "detector_calls": 3,
+      "total_s": 78.18923469999572,
+      "detector_calls": 2,
       "detector_call_latency": {
-        "mean_ms": 115.60840000553678,
-        "median_ms": 116.0284000216052,
-        "p95_ms": 118.92198994755745,
-        "std_ms": 3.153526446457875,
-        "n": 3
+        "mean_ms": 104.91310000361409,
+        "median_ms": 104.91310000361409,
+        "p95_ms": 133.61815000680508,
+        "std_ms": 31.894500003545545,
+        "n": 2
       },
-      "data_bytes": 56674304,
+      "data_bytes": 57265536,
       "data_detail": {
-        "dct_feature_maps_bytes": 4700544,
-        "motion_vectors_bytes": 51973760,
+        "dct_feature_maps_bytes": 3133696,
+        "motion_vectors_bytes": 54131840,
         "dct_feature_map_shape": [
           480,
           272,
           3
         ],
-        "num_p_frames": 289
+        "num_p_frames": 301
       },
-      "cpu_seconds": 191.3125,
-      "extra_peak_rss_mb": 1052.578125,
+      "cpu_seconds": 122.890625,
+      "extra_peak_rss_mb": 1205.89453125,
       "energy_j": null,
       "gpu_peak_mem_mb": null,
       "all_run_totals_s": [
-        120.87186579965055,
-        124.45831989962608,
-        127.1137506000232
+        78.18923469999572
       ],
       "pipeline": "OURS (DCT-SSD + MV, original code)",
       "device": "cpu",
-      "fps": 2.346166975703143,
-      "ms_per_frame": 426.22712294392494,
-      "realtime_factor": 0.07820556585677142,
-      "realtime_streams": 0.07820556585677144,
-      "detector_gflops_total": 10.415152127999999,
-      "detector_gflops_per_video_second": 1.0700498761643835,
-      "detector_calls_per_100_frames": 1.0273972602739727,
-      "compute_seconds_per_video_hour": 46032.52927794389,
+      "fps": 3.8752137831068523,
+      "ms_per_frame": 258.0502795379397,
+      "realtime_factor": 0.12917379277022842,
+      "realtime_streams": 0.12917379277022842,
+      "detector_gflops_total": 6.943434752,
+      "detector_gflops_per_video_second": 0.6874687873267327,
+      "detector_calls_per_100_frames": 0.6600660066006601,
+      "compute_seconds_per_video_hour": 27869.430190097486,
       "usd_per_video_hour": null,
-      "video": "Walking",
+      "video": "Walking (1)",
       "video_meta": {
         "width": 1080,
         "height": 1920,
         "fps": 30.0,
-        "frames": 292,
-        "duration_s": 9.733333333333333,
-        "bitstream_mb": 9.291354179382324
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
       },
-      "accuracy": {
-        "precision": 0.8356164383561644,
-        "recall": 0.8356164383561644,
-        "f1": 0.8356164383561644,
-        "mean_iou": 0.6701245903968811,
-        "tp": 244,
-        "fp": 48,
-        "fn": 48,
-        "gt_frames": 292
-      },
-      "frames_with_boxes": 292
+      "accuracy": null,
+      "frames_with_boxes": 303
     },
     {
       "stages_s": {
-        "1_ffprobe_frame_types": 1.6771549999248236,
-        "2_single_pass_extraction_ffmpeg": 1.6010661999462172,
-        "3_dct_feature_map_build_numpy": 0.11640960001386702,
-        "4_mv_parse_numpy": 1.4761672000167891,
-        "5_ssd_detection_iframes": 0.19094629993196577,
-        "6_mv_box_propagation": 0.06294929992873222
+        "1_ffprobe_frame_types": 1.3521131000015885,
+        "2_single_pass_extraction_ffmpeg": 1.344193799974164,
+        "3_dct_feature_map_build_numpy": 0.06431690001045354,
+        "4_mv_parse_numpy": 1.0628183000080753,
+        "5_ssd_detection_iframes": 0.09027250000508502,
+        "6_mv_box_propagation": 0.07345520000671968
       },
-      "total_s": 5.124693599762395,
-      "detector_calls": 3,
+      "total_s": 3.987169800006086,
+      "detector_calls": 2,
       "detector_call_latency": {
-        "mean_ms": 63.645799993537366,
-        "median_ms": 71.56559999566525,
-        "p95_ms": 78.65445001516491,
-        "std_ms": 17.075320660287904,
-        "n": 3
+        "mean_ms": 45.13304999272805,
+        "median_ms": 45.13304999272805,
+        "p95_ms": 64.3172250027419,
+        "std_ms": 21.31575001112651,
+        "n": 2
       },
-      "data_bytes": 56581440,
+      "data_bytes": 57168960,
       "data_detail": {
-        "dct_feature_maps_bytes": 4700160,
-        "motion_vectors_bytes": 51881280,
+        "dct_feature_maps_bytes": 3133440,
+        "motion_vectors_bytes": 54035520,
         "dct_feature_map_shape": [
           480,
           272,
           3
         ],
-        "num_p_frames": 289
+        "num_p_frames": 301
       },
-      "cpu_seconds": 6.046875,
-      "extra_peak_rss_mb": 672.44140625,
+      "cpu_seconds": 4.46875,
+      "extra_peak_rss_mb": 700.890625,
       "energy_j": null,
       "gpu_peak_mem_mb": null,
       "all_run_totals_s": [
-        4.762733400100842,
-        5.124693599762395,
-        5.82411080005113
+        3.987169800006086
       ],
       "pipeline": "OURS-VEC (DCT-SSD + MV, vectorized)",
       "device": "cpu",
-      "fps": 56.979016270072904,
-      "ms_per_frame": 17.55032054713149,
-      "realtime_factor": 1.8993005423357634,
-      "realtime_streams": 1.8993005423357634,
-      "detector_gflops_total": 10.415152127999999,
-      "detector_gflops_per_video_second": 1.0700498761643835,
-      "detector_calls_per_100_frames": 1.0273972602739727,
-      "compute_seconds_per_video_hour": 1895.4346190902013,
+      "fps": 75.99375376477258,
+      "ms_per_frame": 13.158976237643849,
+      "realtime_factor": 2.5331251254924187,
+      "realtime_streams": 2.533125125492419,
+      "detector_gflops_total": 6.943434752,
+      "detector_gflops_per_video_second": 0.6874687873267327,
+      "detector_calls_per_100_frames": 0.6600660066006601,
+      "compute_seconds_per_video_hour": 1421.1694336655357,
       "usd_per_video_hour": null,
-      "video": "Walking",
+      "video": "Walking (1)",
       "video_meta": {
         "width": 1080,
         "height": 1920,
         "fps": 30.0,
-        "frames": 292,
-        "duration_s": 9.733333333333333,
-        "bitstream_mb": 9.291354179382324
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
       },
-      "accuracy": {
-        "precision": 0.8356164383561644,
-        "recall": 0.8356164383561644,
-        "f1": 0.8356164383561644,
-        "mean_iou": 0.6701245307922363,
-        "tp": 244,
-        "fp": 48,
-        "fn": 48,
-        "gt_frames": 292
-      },
-      "frames_with_boxes": 292
+      "accuracy": null,
+      "frames_with_boxes": 303
     },
     {
       "stages_s": {
-        "1_rgb_decode_all_frames": 7.463853100081906,
-        "2_yolo_detection_all_frames": 18.89224449917674
+        "1_rgb_decode_all_frames": 3.6436815000197385,
+        "2_yolo_detection_all_frames": 10.526196399558103
       },
-      "total_s": 26.356097599258646,
-      "overlapped_decode_plus_detect_s": 25.872220000019297,
-      "detector_calls": 292,
+      "total_s": 14.169877899577841,
+      "overlapped_decode_plus_detect_s": 13.58054070000071,
+      "detector_calls": 303,
       "detector_call_latency": {
-        "mean_ms": 64.69946746293404,
-        "median_ms": 68.83494998328388,
-        "p95_ms": 87.67457999638282,
-        "std_ms": 16.049230334328477,
-        "n": 292
+        "mean_ms": 34.739922110752815,
+        "median_ms": 38.18529998534359,
+        "p95_ms": 43.55210000067018,
+        "std_ms": 6.740893156475086,
+        "n": 303
       },
       "yolo_internal_breakdown_s": {
-        "preprocess": 1.2201569008175284,
-        "inference": 16.805332799092866,
-        "postprocess": 0.6079828989459202
+        "preprocess": 0.4896524997020606,
+        "inference": 9.676509400014766,
+        "postprocess": 0.301672299974598
       },
-      "data_bytes": 1816473600,
+      "data_bytes": 1884902400,
       "data_detail": {
-        "decoded_rgb_frames": 292,
+        "decoded_rgb_frames": 303,
         "rgb_frame_bytes": 6220800
       },
-      "cpu_seconds": 213.40625,
-      "extra_peak_rss_mb": 373.51171875,
+      "cpu_seconds": 36.09375,
+      "extra_peak_rss_mb": 379.0390625,
       "energy_j": null,
       "gpu_peak_mem_mb": null,
       "all_run_totals_s": [
-        26.024711400736123,
-        26.356097599258646,
-        26.50784319906961
+        14.169877899577841
       ],
-      "pipeline": "yolo11n-FULL (RGB every frame)",
+      "pipeline": "yolov8n-FULL (RGB every frame)",
       "device": "cpu",
-      "fps": 11.079030152332319,
-      "ms_per_frame": 90.2606082166392,
-      "realtime_factor": 0.36930100507774394,
-      "realtime_streams": 0.36930100507774394,
-      "detector_gflops_total": 1892.4702207999999,
-      "detector_gflops_per_video_second": 194.431872,
+      "fps": 21.383388208943366,
+      "ms_per_frame": 46.76527359596647,
+      "realtime_factor": 0.7127796069647788,
+      "realtime_streams": 0.7127796069647788,
+      "detector_gflops_total": 2649.4281216,
+      "detector_gflops_per_video_second": 262.319616,
       "detector_calls_per_100_frames": 100.0,
-      "compute_seconds_per_video_hour": 9748.145687397035,
+      "compute_seconds_per_video_hour": 5050.649548364379,
       "usd_per_video_hour": null,
-      "video": "Walking",
+      "video": "Walking (1)",
       "video_meta": {
         "width": 1080,
         "height": 1920,
         "fps": 30.0,
-        "frames": 292,
-        "duration_s": 9.733333333333333,
-        "bitstream_mb": 9.291354179382324
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
       },
-      "accuracy": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "mean_iou": 0.9364847901334589,
-        "tp": 292,
-        "fp": 0,
-        "fn": 0,
-        "gt_frames": 292
-      },
-      "frames_with_boxes": 292
+      "accuracy": null,
+      "frames_with_boxes": 303
     },
     {
       "stages_s": {
-        "1_ffprobe_keyframe_index": 1.7648005000082776,
-        "2_rgb_decode_keyframes": 0.23311540007125586,
-        "3_yolo_detection_keyframes": 0.22114109992980957,
-        "2_single_pass_extraction_ffmpeg (from A)": 1.6010661999462172,
-        "4_mv_parse_numpy (from A)": 1.4761672000167891,
-        "5_mv_box_propagation": 0.06325040000956506
+        "1_ffprobe_keyframe_index": 1.3213525000028312,
+        "2_rgb_decode_keyframes": 0.06490199998370372,
+        "3_yolo_detection_keyframes": 0.09303690001252107,
+        "2_single_pass_extraction_ffmpeg (from A)": 1.344193799974164,
+        "4_mv_parse_numpy (from A)": 1.0628183000080753,
+        "5_mv_box_propagation": 0.05903740000212565
       },
-      "total_s": 5.3595407999819145,
-      "detector_calls": 3,
+      "total_s": 3.945340899983421,
+      "detector_calls": 2,
       "detector_call_latency": {
-        "mean_ms": 73.70969998495032,
-        "median_ms": 67.70030001644045,
-        "p95_ms": 110.39962993236259,
-        "std_ms": 31.664057632131616,
-        "n": 3
+        "mean_ms": 46.515049994923174,
+        "median_ms": 46.515049994923174,
+        "p95_ms": 47.453704991494305,
+        "std_ms": 1.0429499961901456,
+        "n": 2
       },
-      "data_bytes": 70543680,
+      "data_bytes": 66477120,
       "data_detail": {
-        "decoded_rgb_keyframes": 3
+        "decoded_rgb_keyframes": 2
       },
-      "cpu_seconds": 3.765625,
-      "extra_peak_rss_mb": 119.7265625,
+      "cpu_seconds": 1.65625,
+      "extra_peak_rss_mb": 45.44921875,
       "energy_j": null,
       "gpu_peak_mem_mb": null,
       "all_run_totals_s": [
-        5.188794999965467,
-        5.3595407999819145,
-        5.716036599944346
+        3.945340899983421
       ],
-      "pipeline": "yolo11n-KEY (RGB keyframes + MV)",
+      "pipeline": "yolov8n-KEY (RGB keyframes + MV)",
       "device": "cpu",
-      "fps": 54.48227952681792,
-      "ms_per_frame": 18.354591780759982,
-      "realtime_factor": 1.8160759842272638,
-      "realtime_streams": 1.816075984227264,
-      "detector_gflops_total": 19.4431872,
-      "detector_gflops_per_video_second": 1.9975877260273975,
-      "detector_calls_per_100_frames": 1.0273972602739727,
-      "compute_seconds_per_video_hour": 1982.2959123220783,
+      "fps": 76.79944716596562,
+      "ms_per_frame": 13.020927062651554,
+      "realtime_factor": 2.559981572198854,
+      "realtime_streams": 2.5599815721988537,
+      "detector_gflops_total": 17.4879744,
+      "detector_gflops_per_video_second": 1.7314826138613861,
+      "detector_calls_per_100_frames": 0.6600660066006601,
+      "compute_seconds_per_video_hour": 1406.2601227663679,
       "usd_per_video_hour": null,
-      "video": "Walking",
+      "video": "Walking (1)",
       "video_meta": {
         "width": 1080,
         "height": 1920,
         "fps": 30.0,
-        "frames": 292,
-        "duration_s": 9.733333333333333,
-        "bitstream_mb": 9.291354179382324
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
       },
-      "accuracy": {
-        "precision": 0.8801369863013698,
-        "recall": 0.8801369863013698,
-        "f1": 0.8801369863013698,
-        "mean_iou": 0.7536411011499463,
-        "tp": 257,
-        "fp": 35,
-        "fn": 35,
-        "gt_frames": 292
+      "accuracy": null,
+      "frames_with_boxes": 303
+    },
+    {
+      "stages_s": {
+        "1_rgb_decode_all_frames": 2.80666729999939,
+        "2_yolo_detection_all_frames": 9.618054600025062
       },
-      "frames_with_boxes": 292
+      "total_s": 12.424721900024451,
+      "overlapped_decode_plus_detect_s": 12.686052499979269,
+      "detector_calls": 303,
+      "detector_call_latency": {
+        "mean_ms": 31.742754455528257,
+        "median_ms": 29.90900000440888,
+        "p95_ms": 42.570030002389096,
+        "std_ms": 9.39486500817849,
+        "n": 303
+      },
+      "yolo_internal_breakdown_s": {
+        "preprocess": 1.0382409000885673,
+        "inference": 5.5722738000622485,
+        "postprocess": 2.853765600215411
+      },
+      "data_bytes": 1884902400,
+      "data_detail": {
+        "decoded_rgb_frames": 303,
+        "rgb_frame_bytes": 6220800
+      },
+      "cpu_seconds": 21.15625,
+      "extra_peak_rss_mb": 388.4296875,
+      "energy_j": 125.0902781942277,
+      "gpu_peak_mem_mb": 27.42529296875,
+      "all_run_totals_s": [
+        12.424721900024451
+      ],
+      "pipeline": "yolov8n-FULL (RGB every frame)",
+      "device": "cuda",
+      "fps": 24.386863741344882,
+      "ms_per_frame": 41.00568283836453,
+      "realtime_factor": 0.8128954580448294,
+      "realtime_streams": 0.8128954580448294,
+      "detector_gflops_total": 2649.4281216,
+      "detector_gflops_per_video_second": 262.319616,
+      "detector_calls_per_100_frames": 100.0,
+      "compute_seconds_per_video_hour": 4428.613746543369,
+      "usd_per_video_hour": null,
+      "video": "Walking (1)",
+      "video_meta": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 30.0,
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
+      },
+      "accuracy": null,
+      "frames_with_boxes": 303
+    },
+    {
+      "stages_s": {
+        "1_ffprobe_keyframe_index": 1.20970799998031,
+        "2_rgb_decode_keyframes": 0.060870800021803007,
+        "3_yolo_detection_keyframes": 0.025546799995936453,
+        "2_single_pass_extraction_ffmpeg (from A)": 1.344193799974164,
+        "4_mv_parse_numpy (from A)": 1.0628183000080753,
+        "5_mv_box_propagation": 0.07066749999648891
+      },
+      "total_s": 3.7738051999767777,
+      "detector_calls": 2,
+      "detector_call_latency": {
+        "mean_ms": 12.768999993568286,
+        "median_ms": 12.768999993568286,
+        "p95_ms": 18.672009994043037,
+        "std_ms": 6.558900000527501,
+        "n": 2
+      },
+      "data_bytes": 66477120,
+      "data_detail": {
+        "decoded_rgb_keyframes": 2
+      },
+      "cpu_seconds": 1.53125,
+      "extra_peak_rss_mb": 23.78515625,
+      "energy_j": 25.575085938071553,
+      "gpu_peak_mem_mb": 27.42529296875,
+      "all_run_totals_s": [
+        3.7738051999767777
+      ],
+      "pipeline": "yolov8n-KEY (RGB keyframes + MV)",
+      "device": "cuda",
+      "fps": 80.29031281261273,
+      "ms_per_frame": 12.454802640187385,
+      "realtime_factor": 2.676343760420424,
+      "realtime_streams": 2.676343760420424,
+      "detector_gflops_total": 17.4879744,
+      "detector_gflops_per_video_second": 1.7314826138613861,
+      "detector_calls_per_100_frames": 0.6600660066006601,
+      "compute_seconds_per_video_hour": 1345.1186851402376,
+      "usd_per_video_hour": null,
+      "video": "Walking (1)",
+      "video_meta": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 30.0,
+        "frames": 303,
+        "duration_s": 10.1,
+        "bitstream_mb": 9.584650039672852
+      },
+      "accuracy": null,
+      "frames_with_boxes": 303
     }
   ],
   "args": {
     "videos": [
-      "Walking.mp4"
+      "C:\\Users\\PESU-RF\\Downloads\\Human Activity Recognition - Video Dataset\\Walking\\Walking (1).mp4"
     ],
     "gt": null,
-    "detector_weights": "D:\\Capstone Folder\\Capstone_Final\\best_model.h5",
+    "detector_weights": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\models\\best_model.h5",
     "ssd_conf": 0.5,
     "yolo_models": [
-      "yolo11n.pt"
+      "yolov8n.pt"
     ],
     "yolo_devices": null,
     "yolo_imgsz": 640,
     "yolo_conf": 0.25,
     "skip_keyframe_baseline": false,
     "impl": "both",
-    "runs": 3,
+    "runs": 1,
     "micro_reps": 100,
     "price_per_hour": null,
-    "output_dir": "D:\\Capstone Folder\\Capstone_Final\\benchmark_results",
+    "output_dir": "C:\\Users\\PESU-RF\\Downloads\\capstone_project_action\\results\\benchmark",
     "keep_work": false
   }
 }

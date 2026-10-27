@@ -14,6 +14,9 @@ End-to-End Pipeline for Action Recognition Preprocessing:
 
 import os
 import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import re
 import shutil
 import argparse
@@ -157,7 +160,7 @@ class ActionDatasetPreprocessor:
         print(f"Loading I-frame Detection Model weights from: {model_weights}")
         self.detector = SSD300_H264(n_classes=1, image_shape=(300, 300, 3))
         self.detector.load_weights(model_weights)
-        print("✓ Detection model loaded successfully!")
+        print("[OK] Detection model loaded successfully!")
 
     def detect_on_i_frame(self, i_frame_npy_path, width, height):
         """Runs SSD inference on a single I-frame DCT feature map"""
@@ -486,20 +489,33 @@ def collect_video_files(input_path):
 
 def video_name_and_label(video_path, video_root):
     """
-    Uses the first sub-folder below video_root as the action label
+    Uses the first sub-folder below video_root (or immediate parent folder) as the action label
     (videos/Walking/v1.mp4 -> label 'Walking', name 'Walking_v1') so that
     identically named files in different class folders do not overwrite each other.
     """
     stem = os.path.splitext(os.path.basename(video_path))[0]
-    if not os.path.isdir(video_root):
-        return stem, ""
-    rel_parent = os.path.relpath(os.path.dirname(os.path.abspath(video_path)), os.path.abspath(video_root))
-    if rel_parent in (".", "") or rel_parent.startswith(".."):
-        return stem, ""
-    label = Path(rel_parent).parts[0]
-    if stem.lower().startswith(label.lower()):
-        return stem, label
-    return f"{label}_{stem}", label
+    abs_video = os.path.abspath(video_path)
+    root_dir = os.path.dirname(os.path.abspath(video_root)) if os.path.isfile(video_root) else os.path.abspath(video_root)
+
+    label = ""
+    if os.path.isdir(root_dir):
+        rel_parent = os.path.relpath(os.path.dirname(abs_video), root_dir)
+        if rel_parent not in (".", "") and not rel_parent.startswith(".."):
+            label = Path(rel_parent).parts[0]
+
+    if not label:
+        if os.path.isfile(video_root):
+            label = os.path.basename(root_dir)
+        else:
+            parent_name = os.path.basename(os.path.dirname(abs_video))
+            if parent_name and parent_name != os.path.basename(root_dir):
+                label = parent_name
+
+    if label:
+        # Avoid redundant prefixes like 'Walking_Walking (1)' -> 'Walking (1)'
+        clean_stem = stem if stem.lower().startswith(label.lower()) else f"{label}_{stem}"
+        return clean_stem, label
+    return stem, ""
 
 
 def update_manifest(manifest_path, records):
@@ -556,6 +572,12 @@ def main():
         action="store_true",
         help="Keep intermediate uncropped I-frame and MV files"
     )
+    parser.add_argument(
+        "--skip_existing",
+        action="store_true",
+        default=True,
+        help="Skip videos that have already been processed (default: True)"
+    )
 
     args = parser.parse_args()
 
@@ -589,6 +611,15 @@ def main():
     for idx, video_path in enumerate(video_files, start=1):
         print(f"\n[{idx}/{len(video_files)}] Processing {os.path.basename(video_path)}")
         video_name, label = video_name_and_label(video_path, args.video_dir)
+
+        if args.skip_existing:
+            csv_check = os.path.join(output_bbox_dir, f"{video_name}_bboxes.csv")
+            mv_check = os.path.join(output_mv_dir, video_name)
+            if os.path.exists(csv_check) and os.path.isdir(mv_check) and len(os.listdir(mv_check)) > 0:
+                print(f"  [SKIP] Already processed: {video_name}")
+                successful += 1
+                continue
+
         info = preprocessor.process_single_video(
             video_path=video_path,
             output_bbox_dir=output_bbox_dir,

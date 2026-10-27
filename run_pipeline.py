@@ -165,12 +165,40 @@ def render_video(video_path, out_path, boxes_by_frame, frame_actions, overall,
     return frame_idx
 
 
-# ============================================================
-# PIPELINE
-# ============================================================
+def play_video_window(video_path):
+    """Play the annotated video in an interactive OpenCV window."""
+    try:
+        import cv2
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            print(f"  [Warning] Could not open video for preview: {video_path}")
+            return
+        win_name = "Action Recognition (Press 'q' or ESC to close, Space to pause)"
+        cv2.namedWindow(win_name, cv2.WINDOW_NORMAL)
+        fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+        delay = max(1, int(1000 / fps))
+        paused = False
+
+        print("  Displaying video window (press 'q' or ESC to close, Space to pause)...")
+        while True:
+            if not paused:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                cv2.imshow(win_name, frame)
+            key = cv2.waitKey(1 if paused else delay) & 0xFF
+            if key in (27, ord('q'), ord('Q')):
+                break
+            elif key == 32:  # Space
+                paused = not paused
+        cap.release()
+        cv2.destroyAllWindows()
+    except Exception as e:
+        print(f"  [Warning] Could not display video window: {e}")
+
 
 def run(video_path, output_dir, detector_weights, action_model, conf_thresh=0.5,
-        device="cuda", clip_stride=None, keep_intermediate=False):
+        device="cuda", clip_stride=None, keep_intermediate=False, show=False, preview=False):
     t_start = time.time()
     video_path = os.path.abspath(video_path)
     if not os.path.isfile(video_path):
@@ -267,6 +295,24 @@ def run(video_path, output_dir, detector_weights, action_model, conf_thresh=0.5,
     print(f"  Results JSON  : {result_json}")
     print(f"  Total time    : {summary['runtime_sec']} s")
     print(f"{'=' * 70}")
+
+    if show:
+        print(f"  Opening output video in media player...")
+        try:
+            if hasattr(os, "startfile"):
+                os.startfile(out_video)
+            elif sys.platform.startswith("darwin"):
+                import subprocess
+                subprocess.Popen(["open", out_video])
+            else:
+                import subprocess
+                subprocess.Popen(["xdg-open", out_video])
+        except Exception as e:
+            print(f"  [Warning] Could not automatically open video: {e}")
+
+    if preview:
+        play_video_window(out_video)
+
     return summary
 
 
@@ -290,6 +336,10 @@ def main():
                         help="Frames between action clips (smaller = finer timeline)")
     parser.add_argument("--keep_intermediate", action="store_true",
                         help="Keep the cropped motion vector .npy files")
+    parser.add_argument("--show", action="store_true",
+                        help="Automatically open the output video in the default media player")
+    parser.add_argument("--preview", action="store_true",
+                        help="Play the annotated video in an interactive pop-up window immediately")
     args = parser.parse_args()
 
     run(
@@ -301,6 +351,8 @@ def main():
         device=args.device,
         clip_stride=args.clip_stride,
         keep_intermediate=args.keep_intermediate,
+        show=args.show,
+        preview=args.preview,
     )
 
 

@@ -1,0 +1,13 @@
+Metric,Our Compressed HAR Model,YOLOv8-FULL Baseline
+Average Total Time (s),4.76 s,9.50 s
+Average FPS,68.3 FPS,32.0 FPS
+Average Preprocessing Latency (ms/frame),15.43 ms,2.35 ms
+Average Inference Latency (ms/frame),0.27 ms,12.56 ms
+Average Postprocessing Latency (ms/frame),0.22 ms,6.77 ms
+Average Detector Calls per Video,2.5,296.3
+Average Detector GFLOPs per Video,8.7 GFLOPs,2590.7 GFLOPs
+Peak Memory Usage,685.4 MB (RAM),415.3 MB (VRAM)
+Average Speedup Factor (Ours vs YOLO),2.15x faster,1.00x (Baseline)
+Average FLOPs Compute Reduction,305.5x less compute,1.0x (Baseline)
+HAR Action Recognition Accuracy,100.0 %,N/A (Object Detector)
+Average Detection Agreement (F1 vs YOLO),0.487,1.000 (Self-Reference)

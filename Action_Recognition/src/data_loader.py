@@ -348,7 +348,9 @@ def build_datasets(config, root_dir, logger=print):
     # ---------- Load videos ----------
     candidate_names = sorted(p.name for p in mv_root.iterdir() if p.is_dir())
     videos, skipped = [], []
-    for name in candidate_names:
+    for idx, name in enumerate(candidate_names):
+        if (idx + 1) % 100 == 0 or idx == 0 or idx == len(candidate_names) - 1:
+            logger(f"  [dataset] Loading & caching video {idx+1}/{len(candidate_names)}...")
         bbox_csv = bbox_root / f"{name}_bboxes.csv"
         if not bbox_csv.exists():
             skipped.append((name, 'no bbox csv'))
