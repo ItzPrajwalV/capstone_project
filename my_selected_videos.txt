@@ -1,0 +1,9 @@
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Walking\Walking (11).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Meet and Split\Meet and Split (47).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Sitting\Sitting (38).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Meet and Split\Meet and Split (46).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Walking While Using Phone\Walking While Using Phone (120).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Clapping\Clapping (57).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Standing Still\Standing Still (117).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Walking While Using Phone\Walking While Using Phone (142).mp4
+C:\Users\PESU-RF\Downloads\Human Activity Recognition - Video Dataset\Clapping\Clapping (135).mp4
