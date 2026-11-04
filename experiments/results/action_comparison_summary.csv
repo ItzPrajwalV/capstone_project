@@ -1,0 +1,9 @@
+Metric,Our Compressed HAR Model,YOLO11 Action Recognition,Advantage
+Action Recognition Accuracy (%),80.0%,70.0%,+10.0%
+Average Throughput (FPS),69.3 FPS,152.3 FPS,0.45x Faster
+Average Execution Time / Video (s),4.41 s,1.94 s,0.44x Faster
+Deep Network Inferences / Video,2.4 calls,296.2 calls,123.4x Fewer Calls
+Total Compute Demand (GFLOPs / Video),274.4 GFLOPs,2738.4 GFLOPs,10.0x Less Compute (99% saving)
+Average Preprocessing (ms / frame),12.60 ms,3.24 ms,Zero RGB Decompression
+Average Inference Latency (ms / frame),1.38 ms,3.38 ms,2.46x Faster Inference
+Average Postprocessing / Tracking (ms / frame),0.20 ms,0.01 ms,Macroblock MV Vectorization
